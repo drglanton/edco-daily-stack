@@ -12,1013 +12,792 @@
 <link rel="apple-touch-icon" href="icons/icon-192.png">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --navy: #0D2B6B;
-    --navy-mid: #1a3a80;
-    --blue: #1565C0;
-    --blue-light: #1E88E5;
-    --green: #1B5E20;
-    --green-mid: #2E7D32;
-    --green-accent: #43A047;
-    --gold: #F9A825;
-    --gold-pale: rgba(249,168,37,0.12);
-    --white: #FFFFFF;
-    --surface: #0f1520;
-    --surface-2: #161f2e;
-    --surface-3: #1c2840;
-    --border: rgba(255,255,255,0.07);
-    --text: #e8eaf0;
-    --text-muted: rgba(232,234,240,0.5);
-    --linkedin: #0A66C2;
-    --ghl-color: #2E7D32;
-    --c360-color: #7B1FA2;
-    --safe-top: env(safe-area-inset-top, 0px);
-    --safe-bottom: env(safe-area-inset-bottom, 0px);
-  }
+:root{
+  --navy:#0D2B6B;--gold:#F9A825;--green-accent:#43A047;--green-mid:#2E7D32;
+  --white:#FFF;--surface:#0f1520;--surface-2:#161f2e;--surface-3:#1c2840;
+  --border:rgba(255,255,255,0.07);--text:#e8eaf0;--text-muted:rgba(232,234,240,0.5);
+  --safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,20px);
+  --red:#EF9A9A;--li:#0A66C2;--c360:#7B1FA2;--ghl:#2E7D32;--assoc:#E65100;--client:#006064;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{height:100%;}
+body{background:var(--surface);font-family:'DM Sans',sans-serif;color:var(--text);min-height:100%;padding-top:var(--safe-top);overscroll-behavior:none;}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+/* BANNER */
+.top-banner{background:linear-gradient(135deg,var(--navy) 0%,#0d1f4a 100%);border-bottom:2px solid var(--gold);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;}
+.banner-left{display:flex;align-items:center;gap:10px;}
+.banner-logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:3px;color:var(--white);}
+.banner-logo span{color:var(--gold);}
+.banner-divider{width:1px;height:24px;background:rgba(255,255,255,0.15);}
+.banner-title{font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:2px;}
+.banner-date{font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);font-weight:500;}
+.banner-right{display:flex;align-items:center;gap:7px;}
+.progress-pill{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:100px;padding:4px 10px;font-size:11px;font-weight:600;display:flex;align-items:center;gap:5px;}
+.progress-pill .dot{width:6px;height:6px;border-radius:50%;background:var(--green-accent);}
+.icon-btn{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);border-radius:8px;padding:5px 9px;font-size:14px;cursor:pointer;-webkit-appearance:none;}
+.icon-btn:active{transform:scale(0.93);background:rgba(255,255,255,0.14);}
+.icon-btn.gold{color:var(--gold);border-color:rgba(249,168,37,0.3);background:rgba(249,168,37,0.08);}
 
-  html { height: 100%; }
+/* RETIREMENT COUNTDOWN */
+.countdown-bar{background:linear-gradient(90deg,rgba(211,47,47,0.15),rgba(249,168,37,0.1));border-bottom:1px solid rgba(211,47,47,0.3);padding:7px 16px;display:flex;align-items:center;justify-content:space-between;}
+.countdown-label{font-size:10px;font-weight:700;color:#EF9A9A;text-transform:uppercase;letter-spacing:1.5px;}
+.countdown-num{font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--gold);letter-spacing:2px;}
+.countdown-sub{font-size:9px;color:var(--text-muted);}
 
-  body {
-    background: var(--surface);
-    font-family: 'DM Sans', sans-serif;
-    color: var(--text);
-    min-height: 100%;
-    padding-top: var(--safe-top);
-    padding-bottom: var(--safe-bottom);
-    overscroll-behavior: none;
-  }
+/* TABS */
+.section-tabs{display:flex;background:var(--surface-2);border-bottom:1px solid var(--border);position:sticky;top:53px;z-index:190;overflow-x:auto;scrollbar-width:none;}
+.section-tabs::-webkit-scrollbar{display:none;}
+.tab{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 10px;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s;color:var(--text-muted);min-width:60px;}
+.tab-icon{font-size:15px;}
+.tab-label{font-size:7px;font-weight:700;text-transform:uppercase;letter-spacing:1px;white-space:nowrap;}
+.tab-badge{font-family:'DM Mono',monospace;font-size:9px;background:rgba(255,255,255,0.08);border-radius:100px;padding:1px 5px;}
+.tab[data-tab="li"].active{border-bottom-color:var(--li);color:#90CAF9;}
+.tab[data-tab="c360"].active{border-bottom-color:var(--c360);color:#CE93D8;}
+.tab[data-tab="ghl"].active{border-bottom-color:var(--ghl);color:#A5D6A7;}
+.tab[data-tab="assoc"].active{border-bottom-color:var(--assoc);color:#FFAB91;}
+.tab[data-tab="client"].active{border-bottom-color:var(--client);color:#80DEEA;}
 
-  /* ── TOP BANNER ── */
-  .top-banner {
-    background: linear-gradient(135deg, var(--navy) 0%, #0d1f4a 100%);
-    border-bottom: 2px solid var(--gold);
-    padding: 14px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
+/* MAIN */
+.main{padding:16px 14px 80px;}
 
-  .banner-left { display: flex; align-items: center; gap: 12px; }
+/* TOTALS BAR */
+.totals-bar{background:linear-gradient(135deg,#0d1520,#0f1e2e);border:1px solid var(--border);border-radius:12px;padding:12px 8px;display:grid;grid-template-columns:repeat(5,1fr);margin-bottom:18px;}
+.total-item{text-align:center;padding:0 4px;border-right:1px solid var(--border);}
+.total-item:last-child{border-right:none;}
+.total-num{font-family:'Bebas Neue',sans-serif;font-size:22px;line-height:1;}
+.total-label{font-size:7px;font-weight:600;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-muted);margin-top:2px;}
 
-  .banner-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    letter-spacing: 3px;
-    color: var(--white);
-  }
-  .banner-logo span { color: var(--gold); }
+/* URGENCY ALERT */
+.urgency-block{background:rgba(211,47,47,0.08);border:1px solid rgba(211,47,47,0.3);border-left:4px solid #EF5350;border-radius:8px;padding:10px 14px;margin-bottom:16px;}
+.urgency-title{font-size:9px;font-weight:700;color:#EF9A9A;text-transform:uppercase;letter-spacing:2px;margin-bottom:6px;}
+.urgency-item{font-size:11px;color:var(--text);line-height:1.5;display:flex;gap:8px;margin-bottom:3px;}
+.urgency-item:last-child{margin-bottom:0;}
+.urgency-date{font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);flex-shrink:0;}
 
-  .banner-divider { width: 1px; height: 28px; background: rgba(255,255,255,0.15); }
+/* SECTIONS */
+.stack-section{display:none;animation:fadeUp 0.25s ease both;}
+.stack-section.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
-  .banner-sub { display: flex; flex-direction: column; }
-  .banner-title { font-size: 10px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; }
-  .banner-date { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--gold); font-weight: 500; margin-top: 1px; }
+/* SECTION HEADER */
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--border);}
+.section-icon-lg{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.section-meta{flex:1;}
+.section-tag{font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:2px;}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:1.5px;line-height:1;}
+.section-subtitle{font-size:10px;color:var(--text-muted);margin-top:2px;}
+.section-progress-num{font-family:'DM Mono',monospace;font-size:18px;font-weight:500;line-height:1;}
+.section-progress-label{font-size:9px;color:var(--text-muted);margin-top:1px;text-align:right;}
 
-  .banner-right { display: flex; align-items: center; gap: 10px; }
+/* TIME BLOCK */
+.time-block{margin-bottom:18px;}
+.time-block-header{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.time-chip{font-family:'DM Mono',monospace;font-size:9px;font-weight:500;padding:3px 9px;border-radius:100px;white-space:nowrap;}
+.time-block-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text-muted);}
+.time-est{font-family:'DM Mono',monospace;font-size:9px;color:var(--text-muted);margin-left:auto;}
 
-  .progress-pill {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 100px;
-    padding: 5px 12px;
-    font-size: 11px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .progress-pill .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green-accent); }
+/* TASK CARDS */
+.task-list{display:flex;flex-direction:column;gap:5px;}
+.task-card{display:flex;align-items:flex-start;gap:10px;padding:12px;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;transition:all 0.2s;user-select:none;-webkit-user-select:none;position:relative;}
+.task-card.done{opacity:0.35;background:rgba(255,255,255,0.02);}
+.task-card.done .task-label{text-decoration:line-through;color:var(--text-muted);}
+.task-card.drag-over{border-color:var(--gold);background:rgba(249,168,37,0.06);}
+.task-checkbox{width:20px;height:20px;border-radius:6px;border:2px solid rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;transition:all 0.2s;cursor:pointer;}
+.task-card.done .task-checkbox{background:var(--green-accent);border-color:var(--green-accent);}
+.check-icon{display:none;font-size:11px;color:white;font-weight:700;}
+.task-card.done .check-icon{display:block;}
+.task-body{flex:1;min-width:0;}
+.task-label{font-size:13px;font-weight:500;line-height:1.35;}
+.task-detail{font-size:10px;color:var(--text-muted);margin-top:3px;line-height:1.45;}
+.task-right{display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0;}
+.task-tag{font-size:8px;font-weight:700;padding:2px 7px;border-radius:100px;text-transform:uppercase;letter-spacing:0.5px;white-space:nowrap;}
+.task-mins{font-family:'DM Mono',monospace;font-size:9px;color:var(--text-muted);}
 
-  .reset-btn {
-    background: rgba(249,168,37,0.1);
-    border: 1px solid rgba(249,168,37,0.3);
-    color: var(--gold);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 6px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    letter-spacing: 0.5px;
-    transition: all 0.2s;
-    -webkit-appearance: none;
-  }
-  .reset-btn:active { background: rgba(249,168,37,0.25); transform: scale(0.97); }
+/* CARD ACTIONS */
+.card-actions{display:flex;gap:4px;margin-top:6px;max-height:0;overflow:hidden;transition:max-height 0.2s;}
+.task-card.show-actions .card-actions{max-height:40px;}
+.card-btn{background:rgba(255,255,255,0.06);border:1px solid var(--border);color:var(--text-muted);border-radius:6px;padding:3px 8px;font-size:10px;cursor:pointer;-webkit-appearance:none;}
+.card-btn:active{transform:scale(0.93);}
+.card-btn.edit-btn{color:#90CAF9;border-color:rgba(10,102,194,0.3);}
+.card-btn.del-btn{color:#EF9A9A;border-color:rgba(211,47,47,0.3);}
+.drag-handle{font-size:14px;color:var(--text-muted);cursor:grab;padding:0 2px;margin-top:1px;touch-action:none;}
 
-  /* ── LAYOUT ── */
-  .layout { display: flex; flex-direction: column; }
+/* EDIT MODE */
+.task-label-input,.task-detail-input{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);border-radius:6px;color:var(--text);font-family:'DM Sans',sans-serif;width:100%;resize:none;outline:none;padding:5px 8px;}
+.task-label-input{font-size:13px;font-weight:500;margin-bottom:4px;}
+.task-detail-input{font-size:10px;color:var(--text-muted);min-height:50px;}
+.task-label-input:focus,.task-detail-input:focus{border-color:var(--gold);}
+.tag-picker{display:flex;gap:4px;flex-wrap:wrap;margin-top:6px;}
+.tag-opt{font-size:9px;font-weight:700;padding:2px 8px;border-radius:100px;text-transform:uppercase;cursor:pointer;border:1px solid transparent;opacity:0.45;}
+.tag-opt.selected{opacity:1;border-color:currentColor;}
 
-  /* ── SECTION NAV TABS (mobile-first) ── */
-  .section-tabs {
-    display: flex;
-    background: var(--surface-2);
-    border-bottom: 1px solid var(--border);
-    position: sticky;
-    top: 56px;
-    z-index: 90;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-  .section-tabs::-webkit-scrollbar { display: none; }
+/* ADD BUTTON */
+.add-task-btn{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:10px;margin-top:6px;background:transparent;border:1px dashed rgba(255,255,255,0.12);border-radius:10px;color:var(--text-muted);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;cursor:pointer;-webkit-appearance:none;}
+.add-task-btn:active{background:rgba(255,255,255,0.04);}
 
-  .tab {
-    flex: 1;
-    min-width: 80px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3px;
-    padding: 10px 8px;
-    cursor: pointer;
-    border-bottom: 2px solid transparent;
-    transition: all 0.2s;
-    text-decoration: none;
-    color: var(--text-muted);
-  }
-  .tab.active { color: var(--white); }
-  .tab-icon { font-size: 18px; }
-  .tab-label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; white-space: nowrap; }
-  .tab-badge {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    background: rgba(255,255,255,0.08);
-    border-radius: 100px;
-    padding: 1px 6px;
-  }
-  .tab[data-tab="li"].active { border-bottom-color: #0A66C2; color: #90CAF9; }
-  .tab[data-tab="c360"].active { border-bottom-color: #7B1FA2; color: #CE93D8; }
-  .tab[data-tab="ghl"].active { border-bottom-color: #2E7D32; color: #A5D6A7; }
+/* SENDS METER */
+.sends-meter{background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:18px;display:flex;align-items:center;gap:12px;}
+.sends-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-muted);flex:1;}
+.sends-count{font-family:'DM Mono',monospace;font-size:20px;font-weight:500;color:var(--gold);}
+.sends-track{flex:2;height:5px;background:rgba(255,255,255,0.07);border-radius:3px;overflow:hidden;}
+.sends-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,#0A66C2,#1E88E5);width:0%;transition:width 0.4s;}
 
-  /* ── MAIN CONTENT ── */
-  .main { padding: 20px 16px 40px; }
+/* ALERT BOX */
+.alert-box{background:rgba(249,168,37,0.06);border:1px solid rgba(249,168,37,0.25);border-left:4px solid var(--gold);border-radius:8px;padding:10px 14px;margin-bottom:18px;font-size:11px;color:rgba(249,168,37,0.9);line-height:1.5;}
+.alert-box strong{color:var(--gold);font-weight:700;}
 
-  /* ── DAILY TOTALS ── */
-  .totals-bar {
-    background: linear-gradient(135deg, #0d1520, #0f1e2e);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 16px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 0;
-    margin-bottom: 28px;
-  }
-  .total-item { text-align: center; padding: 0 8px; border-right: 1px solid var(--border); }
-  .total-item:last-child { border-right: none; }
-  .total-num { font-family: 'Bebas Neue', sans-serif; font-size: 28px; line-height: 1; }
-  .total-label { font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-top: 3px; }
+/* CLIENT CARDS */
+.client-card{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:12px;}
+.client-card-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px;}
+.client-name{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;color:var(--white);}
+.client-meta{font-size:10px;color:var(--text-muted);margin-top:1px;}
+.client-badge{font-family:'DM Mono',monospace;font-size:10px;font-weight:700;padding:3px 9px;border-radius:100px;white-space:nowrap;}
+.badge-urgent{background:rgba(211,47,47,0.15);color:#EF9A9A;}
+.badge-upcoming{background:rgba(249,168,37,0.12);color:var(--gold);}
+.badge-confirmed{background:rgba(67,160,71,0.12);color:#A5D6A7;}
+.client-details{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px;}
+.client-detail-item{background:rgba(255,255,255,0.03);border-radius:6px;padding:6px 10px;}
+.detail-label{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:2px;}
+.detail-value{font-size:11px;color:var(--text);font-weight:500;}
 
-  /* ── STACK SECTION ── */
-  .stack-section { display: none; animation: fadeUp 0.3s ease both; }
-  .stack-section.active { display: block; }
+/* ASSOC TABLE */
+.assoc-table{width:100%;border-collapse:collapse;margin-bottom:16px;}
+.assoc-table th{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-muted);padding:6px 8px;text-align:left;border-bottom:1px solid var(--border);}
+.assoc-table td{font-size:11px;padding:8px 8px;border-bottom:1px solid rgba(255,255,255,0.04);vertical-align:top;}
+.assoc-table tr:last-child td{border-bottom:none;}
+.assoc-state{font-weight:700;color:var(--white);}
+.assoc-date{font-family:'DM Mono',monospace;font-size:9px;color:var(--gold);}
+.assoc-contact{font-size:10px;color:var(--text-muted);}
+.assoc-status{font-size:8px;font-weight:700;padding:2px 7px;border-radius:100px;text-transform:uppercase;white-space:nowrap;}
+.status-hot{background:rgba(211,47,47,0.15);color:#EF9A9A;}
+.status-sent{background:rgba(30,136,229,0.12);color:#90CAF9;}
+.status-target{background:rgba(249,168,37,0.12);color:var(--gold);}
+.status-done{background:rgba(67,160,71,0.12);color:#A5D6A7;}
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+/* PRIORITY TAGS */
+.tag-critical{background:rgba(211,47,47,0.15);color:#EF9A9A;}
+.tag-high{background:rgba(249,168,37,0.12);color:var(--gold);}
+.tag-daily{background:rgba(30,136,229,0.12);color:#90CAF9;}
+.tag-mwf{background:rgba(67,160,71,0.12);color:#A5D6A7;}
+.tag-auto{background:rgba(123,31,162,0.12);color:#CE93D8;}
+.tag-preretire{background:rgba(211,47,47,0.2);color:#FF8A65;}
 
-  /* ── SECTION HEADER ── */
-  .section-header {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 20px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--border);
-  }
-  .section-icon-lg {
-    width: 44px; height: 44px;
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 20px;
-    flex-shrink: 0;
-  }
-  .section-meta { flex: 1; }
-  .section-tag { font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 2px; }
-  .section-title { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 1.5px; line-height: 1; }
-  .section-subtitle { font-size: 11px; color: var(--text-muted); margin-top: 3px; font-weight: 400; }
-  .section-progress-wrap { text-align: right; flex-shrink: 0; }
-  .section-progress-num { font-family: 'DM Mono', monospace; font-size: 20px; font-weight: 500; line-height: 1; }
-  .section-progress-label { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+/* SECTION COLORS */
+.li-accent{color:#5C9BD6;}.li-bg{background:rgba(10,102,194,0.15);}.li-time{background:rgba(10,102,194,0.12);color:#90CAF9;}.li-border{border-left:3px solid #0A66C2;}
+.c360-accent{color:#CE93D8;}.c360-bg{background:rgba(123,31,162,0.15);}.c360-time{background:rgba(123,31,162,0.12);color:#CE93D8;}.c360-border{border-left:3px solid #7B1FA2;}
+.ghl-accent{color:#A5D6A7;}.ghl-bg{background:rgba(46,125,50,0.15);}.ghl-time{background:rgba(46,125,50,0.12);color:#A5D6A7;}.ghl-border{border-left:3px solid #2E7D32;}
+.assoc-accent{color:#FFAB91;}.assoc-bg{background:rgba(230,81,0,0.15);}.assoc-time{background:rgba(230,81,0,0.12);color:#FFAB91;}.assoc-border{border-left:3px solid #E65100;}
+.client-accent{color:#80DEEA;}.client-bg{background:rgba(0,96,100,0.2);}.client-time{background:rgba(0,96,100,0.15);color:#80DEEA;}.client-border{border-left:3px solid #006064;}
 
-  /* ── TIME BLOCK ── */
-  .time-block { margin-bottom: 20px; }
-  .time-block-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
-  .time-chip {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    font-weight: 500;
-    padding: 3px 10px;
-    border-radius: 100px;
-    letter-spacing: 0.5px;
-    white-space: nowrap;
-  }
-  .time-block-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); }
-  .time-est { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text-muted); margin-left: auto; }
+/* FOOTER */
+.stack-footer{margin-top:32px;padding:14px 0;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+.footer-motto{font-size:10px;color:var(--text-muted);font-style:italic;}
+.footer-brand{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:2px;color:var(--text-muted);}
+.footer-brand span{color:var(--gold);}
 
-  /* ── TASK CARD ── */
-  .task-list { display: flex; flex-direction: column; gap: 6px; }
+/* TOAST */
+.toast{position:fixed;bottom:calc(var(--safe-bottom) + 16px);left:50%;transform:translateX(-50%) translateY(20px);background:#1c2840;border:1px solid var(--gold);border-radius:10px;padding:10px 18px;font-size:12px;font-weight:600;color:var(--gold);opacity:0;transition:all 0.3s;z-index:999;white-space:nowrap;pointer-events:none;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 
-  .task-card {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 14px 14px;
-    background: var(--surface-2);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.2s;
-    user-select: none;
-    -webkit-user-select: none;
-  }
-  .task-card:active { transform: scale(0.985); background: var(--surface-3); }
-  .task-card.done { opacity: 0.4; background: rgba(255,255,255,0.02); }
-  .task-card.done .task-label { text-decoration: line-through; color: var(--text-muted); }
-
-  .task-checkbox {
-    width: 22px; height: 22px;
-    border-radius: 6px;
-    border: 2px solid rgba(255,255,255,0.2);
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-    margin-top: 0px;
-    transition: all 0.2s;
-  }
-  .task-card.done .task-checkbox { background: var(--green-accent); border-color: var(--green-accent); }
-  .check-icon { display: none; font-size: 12px; color: white; font-weight: 700; }
-  .task-card.done .check-icon { display: block; }
-
-  .task-body { flex: 1; min-width: 0; }
-  .task-label { font-size: 14px; font-weight: 500; line-height: 1.35; transition: all 0.2s; }
-  .task-detail { font-size: 11px; color: var(--text-muted); margin-top: 4px; line-height: 1.45; font-weight: 400; }
-
-  .task-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex-shrink: 0; }
-  .task-tag {
-    font-size: 9px; font-weight: 700; padding: 2px 8px;
-    border-radius: 100px; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap;
-  }
-  .task-mins { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text-muted); white-space: nowrap; }
-
-  /* ── PRIORITY TAGS ── */
-  .tag-critical { background: rgba(211,47,47,0.15); color: #EF9A9A; }
-  .tag-high { background: rgba(249,168,37,0.12); color: var(--gold); }
-  .tag-daily { background: rgba(30,136,229,0.12); color: #90CAF9; }
-  .tag-mwf { background: rgba(67,160,71,0.12); color: #A5D6A7; }
-  .tag-auto { background: rgba(123,31,162,0.12); color: #CE93D8; }
-
-  /* ── SECTION COLORS ── */
-  .linkedin-accent { color: #5C9BD6; }
-  .linkedin-icon-bg { background: rgba(10,102,194,0.15); }
-  .linkedin-time { background: rgba(10,102,194,0.12); color: #90CAF9; }
-  .linkedin-border { border-left: 3px solid #0A66C2; }
-
-  .c360-accent { color: #CE93D8; }
-  .c360-icon-bg { background: rgba(123,31,162,0.15); }
-  .c360-time { background: rgba(123,31,162,0.12); color: #CE93D8; }
-  .c360-border { border-left: 3px solid #7B1FA2; }
-
-  .ghl-accent { color: #A5D6A7; }
-  .ghl-icon-bg { background: rgba(46,125,50,0.15); }
-  .ghl-time { background: rgba(46,125,50,0.12); color: #A5D6A7; }
-  .ghl-border { border-left: 3px solid #2E7D32; }
-
-  /* ── ALERT BOX ── */
-  .alert-box {
-    background: rgba(249,168,37,0.06);
-    border: 1px solid rgba(249,168,37,0.25);
-    border-left: 4px solid var(--gold);
-    border-radius: 8px;
-    padding: 12px 16px;
-    margin-bottom: 20px;
-    font-size: 12px;
-    color: rgba(249,168,37,0.9);
-    line-height: 1.5;
-  }
-  .alert-box strong { color: var(--gold); font-weight: 700; }
-
-  /* ── LI SENDS METER ── */
-  .sends-meter {
-    background: var(--surface-2);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 14px 16px;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
-  .sends-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); flex: 1; }
-  .sends-count { font-family: 'DM Mono', monospace; font-size: 22px; font-weight: 500; color: var(--gold); }
-  .sends-track { flex: 2; height: 6px; background: rgba(255,255,255,0.07); border-radius: 3px; overflow: hidden; }
-  .sends-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, #0A66C2, #1E88E5); width: 0%; transition: width 0.4s ease; }
-
-  /* ── FOOTER ── */
-  .stack-footer {
-    margin-top: 40px;
-    padding: 16px 0;
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .footer-motto { font-size: 11px; color: var(--text-muted); font-style: italic; }
-  .footer-brand { font-family: 'Bebas Neue', sans-serif; font-size: 14px; letter-spacing: 2px; color: var(--text-muted); }
-  .footer-brand span { color: var(--gold); }
-
-  /* scrollbar */
-  ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
-
-  /* ── INSTALL PROMPT ── */
-  .install-banner {
-    display: none;
-    background: linear-gradient(135deg, #0D2B6B, #1565C0);
-    border-bottom: 1px solid rgba(249,168,37,0.4);
-    padding: 12px 16px;
-    align-items: center;
-    gap: 12px;
-    font-size: 12px;
-  }
-  .install-banner.show { display: flex; }
-  .install-banner-text { flex: 1; line-height: 1.4; }
-  .install-banner-text strong { color: var(--gold); }
-  .install-btn {
-    background: var(--gold);
-    color: #0D2B6B;
-    border: none;
-    border-radius: 6px;
-    padding: 7px 14px;
-    font-size: 11px;
-    font-weight: 800;
-    cursor: pointer;
-    white-space: nowrap;
-    -webkit-appearance: none;
-  }
-  .install-close { background: none; border: none; color: var(--text-muted); font-size: 18px; cursor: pointer; padding: 0 4px; }
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:500;display:none;align-items:flex-end;justify-content:center;}
+.modal-overlay.show{display:flex;}
+.modal{background:var(--surface-2);border:1px solid var(--border);border-top:2px solid var(--gold);border-radius:20px 20px 0 0;padding:24px 20px calc(var(--safe-bottom) + 24px);width:100%;max-width:500px;animation:slideUp 0.28s ease;}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.modal-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;margin-bottom:16px;color:var(--gold);}
+.modal-input{width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);border-radius:8px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;padding:10px 12px;outline:none;margin-bottom:10px;}
+.modal-input:focus{border-color:var(--gold);}
+.modal-textarea{min-height:70px;resize:none;}
+.modal-select{width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);border-radius:8px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;padding:10px 12px;outline:none;margin-bottom:10px;-webkit-appearance:none;}
+.modal-row{display:flex;gap:8px;margin-top:4px;}
+.modal-btn{flex:1;padding:12px;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;border:none;-webkit-appearance:none;}
+.modal-btn.primary{background:var(--gold);color:#0D2B6B;}
+.modal-btn.secondary{background:rgba(255,255,255,0.07);color:var(--text-muted);}
+.modal-btn:active{transform:scale(0.97);}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px;}
 </style>
 </head>
 <body>
 
-<!-- INSTALL BANNER (Android/Desktop only — iOS uses Add to Home Screen) -->
-<div class="install-banner" id="installBanner">
-  <div class="install-banner-text"><strong>Install EDCO OS</strong> — Add to your home screen for the full app experience.</div>
-  <button class="install-btn" id="installBtn">Install</button>
-  <button class="install-close" onclick="document.getElementById('installBanner').classList.remove('show')">×</button>
+<div class="toast" id="toast"></div>
+
+<!-- ADD MODAL -->
+<div class="modal-overlay" id="addModal">
+  <div class="modal">
+    <div class="modal-title">Add Task</div>
+    <input class="modal-input" id="newLabel" placeholder="Task name..." type="text">
+    <textarea class="modal-textarea modal-input" id="newDetail" placeholder="Detail / instructions (optional)..."></textarea>
+    <select class="modal-select" id="newTag">
+      <option value="tag-daily">Daily</option>
+      <option value="tag-critical">Critical</option>
+      <option value="tag-high">High</option>
+      <option value="tag-preretire">Pre-Retirement</option>
+      <option value="tag-mwf">Weekly / Fri Only</option>
+      <option value="tag-auto">Auto</option>
+    </select>
+    <input class="modal-input" id="newMins" placeholder="Time estimate (e.g. 5 min)" type="text">
+    <div class="modal-row">
+      <button class="modal-btn secondary" onclick="closeModal()">Cancel</button>
+      <button class="modal-btn primary" onclick="confirmAdd()">Add Task</button>
+    </div>
+  </div>
 </div>
 
-<!-- TOP BANNER -->
+<!-- BANNER -->
 <div class="top-banner">
   <div class="banner-left">
     <div class="banner-logo">EDCO <span>OS</span></div>
     <div class="banner-divider"></div>
-    <div class="banner-sub">
-      <div class="banner-title">Daily Stack</div>
+    <div>
+      <div class="banner-title">Daily Operating Stack</div>
       <div class="banner-date" id="todayDate"></div>
     </div>
   </div>
   <div class="banner-right">
-    <div class="progress-pill">
-      <div class="dot"></div>
-      <span id="totalDone">0</span>/<span id="totalTasks">0</span>
-    </div>
-    <button class="reset-btn" onclick="resetAll()">↺ Reset</button>
+    <div class="progress-pill"><div class="dot"></div><span id="totalDone">0</span>/<span id="totalTasks">0</span></div>
+    <button class="icon-btn" onclick="exportBackup()" title="Backup">💾</button>
+    <button class="icon-btn gold" onclick="resetDay()" title="Reset">↺</button>
   </div>
 </div>
 
-<!-- SECTION TABS -->
+<!-- RETIREMENT COUNTDOWN -->
+<div class="countdown-bar">
+  <div>
+    <div class="countdown-label">⚠️ Days Until Full Activation</div>
+    <div class="countdown-sub">Retirement June 30 · All CTAs go live July 1</div>
+  </div>
+  <div style="text-align:right;">
+    <div class="countdown-num" id="daysLeft">--</div>
+    <div class="countdown-sub">days remaining</div>
+  </div>
+</div>
+
+<!-- TABS -->
 <div class="section-tabs">
-  <div class="tab active" data-tab="li" onclick="switchTab('li')">
-    <div class="tab-icon">💼</div>
-    <div class="tab-label">LinkedIn</div>
-    <div class="tab-badge" id="tab-li">0/0</div>
-  </div>
-  <div class="tab" data-tab="c360" onclick="switchTab('c360')">
-    <div class="tab-icon">📅</div>
-    <div class="tab-label">Content360</div>
-    <div class="tab-badge" id="tab-c360">0/0</div>
-  </div>
-  <div class="tab" data-tab="ghl" onclick="switchTab('ghl')">
-    <div class="tab-icon">⚡</div>
-    <div class="tab-label">GHL / CRM</div>
-    <div class="tab-badge" id="tab-ghl">0/0</div>
-  </div>
+  <div class="tab active" data-tab="li" onclick="switchTab('li')"><div class="tab-icon">💼</div><div class="tab-label">LinkedIn</div><div class="tab-badge" id="tab-li">0/0</div></div>
+  <div class="tab" data-tab="c360" onclick="switchTab('c360')"><div class="tab-icon">📅</div><div class="tab-label">Content</div><div class="tab-badge" id="tab-c360">0/0</div></div>
+  <div class="tab" data-tab="ghl" onclick="switchTab('ghl')"><div class="tab-icon">⚡</div><div class="tab-label">GHL/CRM</div><div class="tab-badge" id="tab-ghl">0/0</div></div>
+  <div class="tab" data-tab="assoc" onclick="switchTab('assoc')"><div class="tab-icon">🏫</div><div class="tab-label">Assoc.</div><div class="tab-badge" id="tab-assoc">0/0</div></div>
+  <div class="tab" data-tab="client" onclick="switchTab('client')"><div class="tab-icon">📋</div><div class="tab-label">Clients</div><div class="tab-badge" id="tab-client">0/0</div></div>
 </div>
 
-<!-- MAIN -->
 <div class="main">
 
-  <!-- DAILY TOTALS -->
+  <!-- TOTALS -->
   <div class="totals-bar">
-    <div class="total-item">
-      <div class="total-num" style="color:var(--gold);">20</div>
-      <div class="total-label">LI Sends</div>
-    </div>
-    <div class="total-item">
-      <div class="total-num" style="color:#CE93D8;">1</div>
-      <div class="total-label">Post Live</div>
-    </div>
-    <div class="total-item">
-      <div class="total-num" style="color:#A5D6A7;">5</div>
-      <div class="total-label">GHL Actions</div>
-    </div>
-    <div class="total-item">
-      <div class="total-num" style="color:var(--white);">~105</div>
-      <div class="total-label">Min/Day</div>
-    </div>
+    <div class="total-item"><div class="total-num" style="color:var(--gold);" id="stat-sends">0</div><div class="total-label">LI Sends</div></div>
+    <div class="total-item"><div class="total-num" style="color:#CE93D8;">1</div><div class="total-label">Post Live</div></div>
+    <div class="total-item"><div class="total-num" style="color:#A5D6A7;" id="stat-clients">3</div><div class="total-label">Clients</div></div>
+    <div class="total-item"><div class="total-num" style="color:#FFAB91;" id="stat-states">54</div><div class="total-label">States</div></div>
+    <div class="total-item"><div class="total-num" style="color:var(--white);">~2h</div><div class="total-label">Per Day</div></div>
   </div>
 
   <!-- ══ LINKEDIN ══ -->
   <div class="stack-section active" id="sec-li">
-
     <div class="section-header">
-      <div class="section-icon-lg linkedin-icon-bg" style="font-size:20px;">💼</div>
+      <div class="section-icon-lg li-bg">💼</div>
       <div class="section-meta">
-        <div class="section-tag linkedin-accent">Cold Outreach · Mon–Fri Only</div>
-        <div class="section-title linkedin-accent">LINKEDIN</div>
+        <div class="section-tag li-accent">Cold Outreach Engine · Mon–Fri Only</div>
+        <div class="section-title li-accent">LINKEDIN</div>
         <div class="section-subtitle">20 sends/day · AM (10) + PM (10) · Source = queue email</div>
       </div>
-      <div class="section-progress-wrap">
-        <div class="section-progress-num linkedin-accent" id="li-progress">0/0</div>
-        <div class="section-progress-label">tasks done</div>
-      </div>
+      <div><div class="section-progress-num li-accent" id="li-progress">0/0</div><div class="section-progress-label">tasks done</div></div>
     </div>
 
-    <!-- Sends Meter -->
     <div class="sends-meter">
       <div class="sends-label">Today's Sends</div>
       <div class="sends-count" id="li-sends-count">0 / 20</div>
       <div class="sends-track"><div class="sends-fill" id="sends-fill"></div></div>
     </div>
 
-    <!-- AM -->
     <div class="time-block">
-      <div class="time-block-header">
-        <div class="time-chip linkedin-time">AM · 7:00–7:30</div>
-        <div class="time-block-title">Morning Session</div>
-        <div class="time-est">30 min</div>
-      </div>
-      <div class="task-list">
-
-        <div class="task-card linkedin-border" onclick="toggle(this,'li')" data-id="li-1">
-          <div class="task-checkbox"><span class="check-icon">✓</span></div>
-          <div class="task-body">
-            <div class="task-label">Pull today's queue from Gmail</div>
-            <div class="task-detail">Search: from:drglanton@gmail.com subject:"EDCO LinkedIn Daily Send Queue" newer_than:1d · Parse all prospect blocks · Discard SAMPLE rows</div>
-          </div>
-          <div class="task-right">
-            <span class="task-tag tag-daily">Daily</span>
-            <span class="task-mins">3 min</span>
-          </div>
-        </div>
-
-        <div class="task-card linkedin-border am-session-card" onclick="toggle(this,'li')" data-id="li-2">
-          <div class="task-checkbox"><span class="check-icon">✓</span></div>
-          <div class="task-body">
-            <div class="task-label">Execute AM Session — 10 sends</div>
-            <div class="task-detail">MSG1 → Connect + Add Note · MSG2 → Message + Paste + Send · MSG3 → Message + Audit Offer · Log each "sent"</div>
-          </div>
-          <div class="task-right">
-            <span class="task-tag tag-daily">Daily</span>
-            <span class="task-mins">20 min</span>
-          </div>
-        </div>
-
-        <div class="task-card linkedin-border" onclick="toggle(this,'li')" data-id="li-3">
-          <div class="task-checkbox"><span class="check-icon">✓</span></div>
-          <div class="task-body">
-            <div class="task-label">Check overnight connection accepts</div>
-            <div class="task-detail">Review notifications · Flag anyone who accepted MSG1 → queue for MSG2 in 3 days · Reply to any direct messages immediately</div>
-          </div>
-          <div class="task-right">
-            <span class="task-tag tag-daily">Daily</span>
-            <span class="task-mins">5 min</span>
-          </div>
-        </div>
-
-        <div class="task-card linkedin-border" onclick="toggle(this,'li')" data-id="li-4">
-          <div class="task-checkbox"><span class="check-icon">✓</span></div>
-          <div class="task-body">
-            <div class="task-label">Publish today's LinkedIn post</div>
-            <div class="task-detail">Mon/Wed = Pattern Interrupt · Tue = Proof Post · Thu = Promise Post · Fri = Plan Post · One post, no exceptions</div>
-          </div>
-          <div class="task-right">
-            <span class="task-tag tag-daily">Daily</span>
-            <span class="task-mins">5 min</span>
-          </div>
-        </div>
-
-      </div>
+      <div class="time-block-header"><div class="time-chip li-time">AM · 7:00–7:30</div><div class="time-block-title">Morning Session</div><div class="time-est">30 min</div></div>
+      <div class="task-list" id="tl-li-am" data-section="li" data-block="am"></div>
+      <button class="add-task-btn" onclick="openModal('li','am')">+ Add Task</button>
     </div>
-
-    <!-- PM -->
     <div class="time-block">
-      <div class="time-block-header">
-        <div class="time-chip linkedin-time">PM · 12:00–12:30</div>
-        <div class="time-block-title">Afternoon Session</div>
-        <div class="time-est">20 min</div>
-      </div>
-      <div class="task-list">
-
-        <div class="task-card linkedin-border pm-session-card" onclick="toggle(this,'li')" data-id="li-5">
-          <div class="task-checkbox"><span class="check-icon">✓</span></div>
-          <div class="task-body">
-            <div class="task-label">Execute PM Session — 10 sends</div>
-            <div class="task-detail">Next 10 from queue · Same workflow by stage · Never exceed 20 total sends in one calendar day</div>
-          </div>
-          <div class="task-right">
-            <span class="task-tag tag-daily">Daily</span>
-            <span class="task-mins">20 min</span>
-          </div>
-        </div>
-
-      </div>
+      <div class="time-block-header"><div class="time-chip li-time">PM · 12:00–12:30</div><div class="time-block-title">Afternoon Session</div><div class="time-est">20 min</div></div>
+      <div class="task-list" id="tl-li-pm" data-section="li" data-block="pm"></div>
+      <button class="add-task-btn" onclick="openModal('li','pm')">+ Add Task</button>
     </div>
-
-    <!-- EOD -->
     <div class="time-block">
-      <div class="time-block-header">
-        <div class="time-chip linkedin-time">EOD · 4:30–5:00</div>
-        <div class="time-block-title">End of Day Log</div>
-        <div class="time-est">10 min</div>
-      </div>
-      <div class="task-list">
-
-        <div class="task-card linkedin-border" onclick="toggle(this,'li')" data-id="li-6">
-          <div class="task-checkbox"><span class="check-icon">✓</span></div>
-          <div class="task-body">
-            <div class="task-label">Log sends to Google Sheet</div>
-            <div class="task-detail">MSG1 → Col S · MSG2 → Col T · MSG3 → Col U · Format MM/DD/YYYY · Use download_file_content (CSV) to verify — never read_file_content</div>
-          </div>
-          <div class="task-right">
-            <span class="task-tag tag-daily">Daily</span>
-            <span class="task-mins">5 min</span>
-          </div>
-        </div>
-
-        <div class="task-card linkedin-border" onclick="toggle(this,'li')" data-id="li-7">
-          <div class="task-checkbox"><span class="check-icon">✓</span></div>
-          <div class="task-body">
-            <div class="task-label">Engage 5 comments on your post</div>
-            <div class="task-detail">Reply to every comment within the day · Like + comment on 5 posts from principals in your network · Algorithm rewards early engagement</div>
-          </div>
-          <div class="task-right">
-            <span class="task-tag tag-daily">Daily</span>
-            <span class="task-mins">5 min</span>
-          </div>
-        </div>
-
-        <div class="task-card linkedin-border" onclick="toggle(this,'li')" data-id="li-8">
-          <div class="task-checkbox"><span class="check-icon">✓</span></div>
-          <div class="task-body">
-            <div class="task-label">Hand off setter — any MSG3 audit replies</div>
-            <div class="task-detail">Any principal who replied to MSG3 → notify Cecilia immediately · Setter calls within same business day · Do NOT let replies sit overnight</div>
-          </div>
-          <div class="task-right">
-            <span class="task-tag tag-critical">Critical</span>
-            <span class="task-mins">2 min</span>
-          </div>
-        </div>
-
-      </div>
+      <div class="time-block-header"><div class="time-chip li-time">EOD · 4:30–5:00</div><div class="time-block-title">End of Day Log</div><div class="time-est">10 min</div></div>
+      <div class="task-list" id="tl-li-eod" data-section="li" data-block="eod"></div>
+      <button class="add-task-btn" onclick="openModal('li','eod')">+ Add Task</button>
     </div>
-
   </div>
 
   <!-- ══ CONTENT360 ══ -->
   <div class="stack-section" id="sec-c360">
-
     <div class="section-header">
-      <div class="section-icon-lg c360-icon-bg" style="font-size:20px;">📅</div>
+      <div class="section-icon-lg c360-bg">📅</div>
       <div class="section-meta">
         <div class="section-tag c360-accent">Content Engine · Daily + Weekly</div>
         <div class="section-title c360-accent">CONTENT 360</div>
-        <div class="section-subtitle">get.content360.io · 20+ platforms · Sunday batch upload</div>
+        <div class="section-subtitle">Content360 + n8n Blog Pipeline + WordPress</div>
       </div>
-      <div class="section-progress-wrap">
-        <div class="section-progress-num c360-accent" id="c360-progress">0/0</div>
-        <div class="section-progress-label">tasks done</div>
-      </div>
+      <div><div class="section-progress-num c360-accent" id="c360-progress">0/0</div><div class="section-progress-label">tasks done</div></div>
     </div>
 
-    <div class="alert-box">
-      <strong>Sunday Upload Rule:</strong> Batch-load the full week's posts every Sunday. Schedule Mon–Fri at optimal times. One session per week eliminates daily friction.
+    <div class="urgency-block">
+      <div class="urgency-title">🔴 Pre-June 30 Blockers</div>
+      <div class="urgency-item"><span class="urgency-date">Jun 9</span>7 WordPress post titles wrong — fix before first publish</div>
+      <div class="urgency-item"><span class="urgency-date">Jun 10</span>Audit Emails 2/3/4 in Evergreen Workflow before tag drop to 6,300</div>
+      <div class="urgency-item"><span class="urgency-date">Jun 18</span>Verify webinar registration link is live and accepting</div>
     </div>
 
-    <!-- Daily -->
+    <div class="alert-box"><strong>Sunday Upload Rule:</strong> Batch-load the full week every Sunday. Fix Jun 8 duplicate time conflict + Jul 20/22/24 same-source repetition before next upload.</div>
+
     <div class="time-block">
-      <div class="time-block-header">
-        <div class="time-chip c360-time">Daily · 8:00–8:15</div>
-        <div class="time-block-title">Daily Check</div>
-        <div class="time-est">15 min</div>
-      </div>
-      <div class="task-list">
-
-        <div class="task-card c360-border" onclick="toggle(this,'c360')" data-id="c360-1">
-          <div class="task-checkbox"><span class="check-icon">✓</span></div>
-          <div class="task-body">
-            <div class="task-label">Confirm today's post published correctly</div>
-            <div class="task-detail">Check Content360 dashboard · Verify LinkedIn, Facebook, and other platforms fired · Fix if a post failed to publish</div>
-          </div>
-          <div class="task-right">
-            <span class="task-tag tag-daily">Daily</span>
-            <span class="task-mins">3 min</span>
-          </div>
-        </div>
-
-        <div class="task-card c360-border" onclick="toggle(this,'c360')" data-id="c360-2">
-          <div class="task-checkbox"><span class="check-icon">✓</span></div>
-          <div class="task-body">
-            <div class="task-label">Check DM automation / chatbot replies</div>
-            <div class="task-detail">Review Messenger chatbot activity · Flag any principal who responded to lead magnet keyword trigger → hand to Cecilia</div>
-          </div>
-          <div class="task-right">
-            <span class="task-tag tag-daily">Daily</span>
-            <span class="task-mins">5 min</span>
-          </div>
-        </div>
-
-        <div class="task-card c360-border" onclick="toggle(this,'c360')" data-id="c360-3">
-          <div class="task-checkbox"><span class="check-icon">✓</span></div>
-          <div class="task-body">
-            <div class="task-label">Capture 1 content idea from your day</div>
-            <div class="task-detail">Client call insight · Principal conversation · School observation · Voice memo or note — Hormozi: "There's gold in those conversations."</div>
-          </div>
-          <div class="task-right">
-            <span class="task-tag tag-daily">Daily</span>
-            <span class="task-mins">2 min</span>
-          </div>
-        </div>
-
-      </div>
+      <div class="time-block-header"><div class="time-chip c360-time">Daily · 8:00–8:15</div><div class="time-block-title">Daily Check</div><div class="time-est">15 min</div></div>
+      <div class="task-list" id="tl-c360-daily" data-section="c360" data-block="daily"></div>
+      <button class="add-task-btn" onclick="openModal('c360','daily')">+ Add Task</button>
     </div>
-
-    <!-- Weekly -->
     <div class="time-block">
-      <div class="time-block-header">
-        <div class="time-chip c360-time">Sunday · Batch Session</div>
-        <div class="time-block-title">Weekly Content Build</div>
-        <div class="time-est">60–90 min</div>
-      </div>
-      <div class="task-list">
-
-        <div class="task-card c360-border" onclick="toggle(this,'c360')" data-id="c360-4">
-          <div class="task-checkbox"><span class="check-icon">✓</span></div>
-          <div class="task-body">
-            <div class="task-label">Write 5 posts for the week</div>
-            <div class="task-detail">Mon/Wed = Pattern Interrupt · Tue = Proof Post · Thu = Promise Post · Fri = Plan Post · Use voice guide language — never generic PD speak</div>
-          </div>
-          <div class="task-right">
-            <span class="task-tag tag-mwf">Weekly</span>
-            <span class="task-mins">45 min</span>
-          </div>
-        </div>
-
-        <div class="task-card c360-border" onclick="toggle(this,'c360')" data-id="c360-5">
-          <div class="task-checkbox"><span class="check-icon">✓</span></div>
-          <div class="task-body">
-            <div class="task-label">Upload + schedule all 5 in Content360</div>
-            <div class="task-detail">Load into Content360 queue · Schedule Mon–Fri at 7–8 AM or 11 AM–12 PM · Verify captions, images, and platform targets</div>
-          </div>
-          <div class="task-right">
-            <span class="task-tag tag-mwf">Weekly</span>
-            <span class="task-mins">20 min</span>
-          </div>
-        </div>
-
-        <div class="task-card c360-border" onclick="toggle(this,'c360')" data-id="c360-6">
-          <div class="task-checkbox"><span class="check-icon">✓</span></div>
-          <div class="task-body">
-            <div class="task-label">Review prior week analytics</div>
-            <div class="task-detail">Which post got most reach? Most comments? Double down on that format. Kill what didn't move.</div>
-          </div>
-          <div class="task-right">
-            <span class="task-tag tag-mwf">Weekly</span>
-            <span class="task-mins">10 min</span>
-          </div>
-        </div>
-
-        <div class="task-card c360-border" onclick="toggle(this,'c360')" data-id="c360-7">
-          <div class="task-checkbox"><span class="check-icon">✓</span></div>
-          <div class="task-body">
-            <div class="task-label">Verify DISCIPLINE keyword SMS automation</div>
-            <div class="task-detail">Confirm Content360 keyword trigger is active → any comment/DM with "DISCIPLINE" fires GHL lead magnet sequence automatically</div>
-          </div>
-          <div class="task-right">
-            <span class="task-tag tag-auto">Auto</span>
-            <span class="task-mins">5 min</span>
-          </div>
-        </div>
-
-      </div>
+      <div class="time-block-header"><div class="time-chip c360-time">Sunday · Batch</div><div class="time-block-title">Weekly Content Build</div><div class="time-est">60–90 min</div></div>
+      <div class="task-list" id="tl-c360-weekly" data-section="c360" data-block="weekly"></div>
+      <button class="add-task-btn" onclick="openModal('c360','weekly')">+ Add Task</button>
     </div>
-
   </div>
 
   <!-- ══ GHL ══ -->
   <div class="stack-section" id="sec-ghl">
-
     <div class="section-header">
-      <div class="section-icon-lg ghl-icon-bg" style="font-size:20px;">⚡</div>
+      <div class="section-icon-lg ghl-bg">⚡</div>
       <div class="section-meta">
         <div class="section-tag ghl-accent">CRM + Automation · Daily Ops</div>
         <div class="section-title ghl-accent">GHL / CRM</div>
-        <div class="section-subtitle">6,300 contacts · Nutshell for Cecilia · Pipelines, workflows, re-engagement</div>
+        <div class="section-subtitle">6,300 contacts · Cecilia on Nutshell · Pipelines + re-engagement</div>
       </div>
-      <div class="section-progress-wrap">
-        <div class="section-progress-num ghl-accent" id="ghl-progress">0/0</div>
-        <div class="section-progress-label">tasks done</div>
-      </div>
+      <div><div class="section-progress-num ghl-accent" id="ghl-progress">0/0</div><div class="section-progress-label">tasks done</div></div>
     </div>
 
-    <!-- AM Pulse -->
     <div class="time-block">
-      <div class="time-block-header">
-        <div class="time-chip ghl-time">AM · 7:30–7:45</div>
-        <div class="time-block-title">Morning Pulse</div>
-        <div class="time-est">15 min</div>
-      </div>
-      <div class="task-list">
-
-        <div class="task-card ghl-border" onclick="toggle(this,'ghl')" data-id="ghl-1">
-          <div class="task-checkbox"><span class="check-icon">✓</span></div>
-          <div class="task-body">
-            <div class="task-label">Check pipeline — any new leads overnight?</div>
-            <div class="task-detail">Open GHL pipeline view · New opt-ins from audit or drift magnets → tag and route to setter · Any inbound calls to 800-294-9009 → Cecilia notified</div>
-          </div>
-          <div class="task-right">
-            <span class="task-tag tag-critical">Critical</span>
-            <span class="task-mins">5 min</span>
-          </div>
-        </div>
-
-        <div class="task-card ghl-border" onclick="toggle(this,'ghl')" data-id="ghl-2">
-          <div class="task-checkbox"><span class="check-icon">✓</span></div>
-          <div class="task-body">
-            <div class="task-label">Verify workflow automations firing</div>
-            <div class="task-detail">Check active sequences (Webinar Invitation, No Show Follow-Up, Re-Engage 1) are running without errors · Fix any stuck contacts</div>
-          </div>
-          <div class="task-right">
-            <span class="task-tag tag-daily">Daily</span>
-            <span class="task-mins">5 min</span>
-          </div>
-        </div>
-
-        <div class="task-card ghl-border" onclick="toggle(this,'ghl')" data-id="ghl-3">
-          <div class="task-checkbox"><span class="check-icon">✓</span></div>
-          <div class="task-body">
-            <div class="task-label">Review Nutshell — Cecilia's open tasks</div>
-            <div class="task-detail">Confirm setter has no leads sitting 24+ hrs without contact attempt · Every new lead gets same-day outreach — non-negotiable</div>
-          </div>
-          <div class="task-right">
-            <span class="task-tag tag-critical">Critical</span>
-            <span class="task-mins">3 min</span>
-          </div>
-        </div>
-
-      </div>
+      <div class="time-block-header"><div class="time-chip ghl-time">AM · 7:30–7:45</div><div class="time-block-title">Morning Pulse</div><div class="time-est">15 min</div></div>
+      <div class="task-list" id="tl-ghl-am" data-section="ghl" data-block="am"></div>
+      <button class="add-task-btn" onclick="openModal('ghl','am')">+ Add Task</button>
     </div>
-
-    <!-- Mid-Day -->
     <div class="time-block">
-      <div class="time-block-header">
-        <div class="time-chip ghl-time">Mid-Day · As Needed</div>
-        <div class="time-block-title">Pipeline Management</div>
-        <div class="time-est">10 min</div>
-      </div>
-      <div class="task-list">
-
-        <div class="task-card ghl-border" onclick="toggle(this,'ghl')" data-id="ghl-4">
-          <div class="task-checkbox"><span class="check-icon">✓</span></div>
-          <div class="task-body">
-            <div class="task-label">Reply to any booked session pre-call emails</div>
-            <div class="task-detail">GHL sends pre-call reminder automatically · Any manual replies from prospects → Thomas responds · Never leave a booked principal without a response</div>
-          </div>
-          <div class="task-right">
-            <span class="task-tag tag-high">High</span>
-            <span class="task-mins">5 min</span>
-          </div>
-        </div>
-
-        <div class="task-card ghl-border" onclick="toggle(this,'ghl')" data-id="ghl-5">
-          <div class="task-checkbox"><span class="check-icon">✓</span></div>
-          <div class="task-body">
-            <div class="task-label">Tag and move pipeline cards after strategy session</div>
-            <div class="task-detail">Session held → move to "Proposal Sent" or "Closed" · Log outcome in Nutshell · Send proposal within 48 hours of session</div>
-          </div>
-          <div class="task-right">
-            <span class="task-tag tag-high">High</span>
-            <span class="task-mins">3 min</span>
-          </div>
-        </div>
-
-      </div>
+      <div class="time-block-header"><div class="time-chip ghl-time">Mid-Day</div><div class="time-block-title">Pipeline Management</div><div class="time-est">10 min</div></div>
+      <div class="task-list" id="tl-ghl-mid" data-section="ghl" data-block="mid"></div>
+      <button class="add-task-btn" onclick="openModal('ghl','mid')">+ Add Task</button>
     </div>
-
-    <!-- EOD -->
     <div class="time-block">
-      <div class="time-block-header">
-        <div class="time-chip ghl-time">EOD · 5:00–5:15</div>
-        <div class="time-block-title">End of Day Sweep</div>
-        <div class="time-est">15 min</div>
-      </div>
-      <div class="task-list">
-
-        <div class="task-card ghl-border" onclick="toggle(this,'ghl')" data-id="ghl-6">
-          <div class="task-checkbox"><span class="check-icon">✓</span></div>
-          <div class="task-body">
-            <div class="task-label">Confirm no leads stuck in Smart Lists</div>
-            <div class="task-detail">Check Smart Lists are filtering correctly · Any contacts in "webinar_eligible" not enrolled → push into webinar sequence</div>
-          </div>
-          <div class="task-right">
-            <span class="task-tag tag-daily">Daily</span>
-            <span class="task-mins">5 min</span>
-          </div>
-        </div>
-
-        <div class="task-card ghl-border" onclick="toggle(this,'ghl')" data-id="ghl-7">
-          <div class="task-checkbox"><span class="check-icon">✓</span></div>
-          <div class="task-body">
-            <div class="task-label">Database Reactivation pulse (until complete)</div>
-            <div class="task-detail">Monitor re-engagement campaign send stats · Any reply from the 6,300-contact list → Cecilia gets it immediately · Track opens, clicks, opt-outs daily</div>
-          </div>
-          <div class="task-right">
-            <span class="task-tag tag-high">High</span>
-            <span class="task-mins">5 min</span>
-          </div>
-        </div>
-
-        <div class="task-card ghl-border" onclick="toggle(this,'ghl')" data-id="ghl-8">
-          <div class="task-checkbox"><span class="check-icon">✓</span></div>
-          <div class="task-body">
-            <div class="task-label">Friday only: Verify SPF / DKIM / DMARC status</div>
-            <div class="task-detail">GHL deliverability check · Domain health = email reputation · One failed setting kills your entire 6,300-contact send capacity</div>
-          </div>
-          <div class="task-right">
-            <span class="task-tag tag-mwf">Fri Only</span>
-            <span class="task-mins">5 min</span>
-          </div>
-        </div>
-
-        <div class="task-card ghl-border" onclick="toggle(this,'ghl')" data-id="ghl-9">
-          <div class="task-checkbox"><span class="check-icon">✓</span></div>
-          <div class="task-body">
-            <div class="task-label">Tomorrow's queue — confirm it's loaded</div>
-            <div class="task-detail">Verify next day's LinkedIn queue email will send · Confirm Fiverr batch is active for next state · Flag if prospect supply is running low — reorder immediately</div>
-          </div>
-          <div class="task-right">
-            <span class="task-tag tag-daily">Daily</span>
-            <span class="task-mins">2 min</span>
-          </div>
-        </div>
-
-      </div>
+      <div class="time-block-header"><div class="time-chip ghl-time">EOD · 5:00–5:15</div><div class="time-block-title">End of Day Sweep</div><div class="time-est">15 min</div></div>
+      <div class="task-list" id="tl-ghl-eod" data-section="ghl" data-block="eod"></div>
+      <button class="add-task-btn" onclick="openModal('ghl','eod')">+ Add Task</button>
     </div>
-
   </div>
 
-  <!-- FOOTER -->
+  <!-- ══ ASSOCIATIONS ══ -->
+  <div class="stack-section" id="sec-assoc">
+    <div class="section-header">
+      <div class="section-icon-lg assoc-bg">🏫</div>
+      <div class="section-meta">
+        <div class="section-tag assoc-accent">Conference Circuit · 54 States</div>
+        <div class="section-title assoc-accent">ASSOCIATIONS</div>
+        <div class="section-subtitle">State principal assoc. outreach · Cecilia $125/showed call · Summer season NOW</div>
+      </div>
+      <div><div class="section-progress-num assoc-accent" id="assoc-progress">0/0</div><div class="section-progress-label">tasks done</div></div>
+    </div>
+
+    <div class="urgency-block">
+      <div class="urgency-title">🔥 Conferences in Next 60 Days — Reach Out NOW</div>
+      <div class="urgency-item"><span class="urgency-date">Jul 28</span>ISS Nashville — "Stop Fighting Alone" 10–10:55AM CT · Confirmed presenting</div>
+      <div class="urgency-item"><span class="urgency-date">Jul 29</span>Nebraska NCSA — contact Dr. Seaman · pitch breakout</div>
+      <div class="urgency-item"><span class="urgency-date">Aug 3</span>Oregon COSA — krista@cosa.k12.or.us · confirmed contact</div>
+      <div class="urgency-item"><span class="urgency-date">Aug 6</span>S. Dakota SASD — Rob Monson rob.monson@sasd.org · ASBSD joint convention</div>
+      <div class="urgency-item"><span class="urgency-date">Aug 20</span>Arizona ASA — School Safety Summit — pitch now</div>
+    </div>
+
+    <div class="time-block">
+      <div class="time-block-header"><div class="time-chip assoc-time">Daily · 9:00–9:20</div><div class="time-block-title">Association Outreach</div><div class="time-est">20 min</div></div>
+      <div class="task-list" id="tl-assoc-daily" data-section="assoc" data-block="daily"></div>
+      <button class="add-task-btn" onclick="openModal('assoc','daily')">+ Add Task</button>
+    </div>
+    <div class="time-block">
+      <div class="time-block-header"><div class="time-chip assoc-time">Weekly · Friday</div><div class="time-block-title">Pipeline Review</div><div class="time-est">15 min</div></div>
+      <div class="task-list" id="tl-assoc-weekly" data-section="assoc" data-block="weekly"></div>
+      <button class="add-task-btn" onclick="openModal('assoc','weekly')">+ Add Task</button>
+    </div>
+
+    <!-- Conference Pipeline Table -->
+    <div style="margin-top:8px;">
+      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text-muted);margin-bottom:8px;">Conference Pipeline</div>
+      <table class="assoc-table">
+        <tr><th>State / Assoc.</th><th>Date</th><th>Contact</th><th>Status</th></tr>
+        <tr><td><span class="assoc-state">ISS Nashville</span></td><td><span class="assoc-date">Jul 28</span></td><td class="assoc-contact">Confirmed</td><td><span class="assoc-status status-done">Confirmed</span></td></tr>
+        <tr><td><span class="assoc-state">Nebraska NCSA</span></td><td><span class="assoc-date">Jul 29–31</span></td><td class="assoc-contact">Target now</td><td><span class="assoc-status status-hot">Urgent</span></td></tr>
+        <tr><td><span class="assoc-state">Oregon COSA</span></td><td><span class="assoc-date">Aug 3–4</span></td><td class="assoc-contact">krista@cosa.k12.or.us</td><td><span class="assoc-status status-hot">Urgent</span></td></tr>
+        <tr><td><span class="assoc-state">S. Dakota SASD</span></td><td><span class="assoc-date">Aug 6–7</span></td><td class="assoc-contact">rob.monson@sasd.org</td><td><span class="assoc-status status-hot">Urgent</span></td></tr>
+        <tr><td><span class="assoc-state">Arizona ASA</span></td><td><span class="assoc-date">Aug 20–21</span></td><td class="assoc-contact">Safety Summit</td><td><span class="assoc-status status-target">Target</span></td></tr>
+        <tr><td><span class="assoc-state">Missouri MoASSP</span></td><td><span class="assoc-date">Sep 20–22</span></td><td class="assoc-contact">Outreach due Aug</td><td><span class="assoc-status status-target">Target</span></td></tr>
+        <tr><td><span class="assoc-state">Georgia</span></td><td><span class="assoc-date">Oct 18–20</span></td><td class="assoc-contact">Home state</td><td><span class="assoc-status status-target">Target</span></td></tr>
+        <tr><td><span class="assoc-state">New Jersey NJPSA</span></td><td><span class="assoc-date">Oct 14–16</span></td><td class="assoc-contact">Outreach due Sep</td><td><span class="assoc-status status-target">Target</span></td></tr>
+        <tr><td><span class="assoc-state">Indiana IASP</span></td><td><span class="assoc-date">Nov 22–24</span></td><td class="assoc-contact">Outreach due Oct</td><td><span class="assoc-status status-target">Target</span></td></tr>
+        <tr><td><span class="assoc-state">ISS San Antonio</span></td><td><span class="assoc-date">Dec 4–6</span></td><td class="assoc-contact">5 sessions submitted</td><td><span class="assoc-status status-sent">Submitted</span></td></tr>
+        <tr><td><span class="assoc-state">IASA Idaho</span></td><td><span class="assoc-date">Confirmed</span></td><td class="assoc-contact">Proposal ID 139468983</td><td><span class="assoc-status status-done">Confirmed</span></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══ CLIENTS ══ -->
+  <div class="stack-section" id="sec-client">
+    <div class="section-header">
+      <div class="section-icon-lg client-bg">📋</div>
+      <div class="section-meta">
+        <div class="section-tag client-accent">Active Engagements · 3 Confirmed</div>
+        <div class="section-title client-accent">CLIENTS</div>
+        <div class="section-subtitle">East Knox · Forest Hill · Pioneer · All POs issued</div>
+      </div>
+      <div><div class="section-progress-num client-accent" id="client-progress">0/0</div><div class="section-progress-label">tasks done</div></div>
+    </div>
+
+    <!-- East Knox -->
+    <div class="client-card" style="border-left:3px solid #0A66C2;">
+      <div class="client-card-header">
+        <div><div class="client-name">East Knox Jr./Sr. High</div><div class="client-meta">Shannon Sprang · ssprang@ekschools.org · Shelby OH</div></div>
+        <span class="client-badge badge-upcoming">Aug 11</span>
+      </div>
+      <div class="client-details">
+        <div class="client-detail-item"><div class="detail-label">Contract</div><div class="detail-value">$15,000 (2×$7,500)</div></div>
+        <div class="client-detail-item"><div class="detail-label">PO Status</div><div class="detail-value" style="color:#EF9A9A;">Entity name error</div></div>
+        <div class="client-detail-item"><div class="detail-label">Training Date</div><div class="detail-value">August 11, 2026</div></div>
+        <div class="client-detail-item"><div class="detail-label">Days Out</div><div class="detail-value" id="days-eastknox">--</div></div>
+      </div>
+      <div style="font-size:10px;color:#EF9A9A;background:rgba(211,47,47,0.08);border-radius:6px;padding:6px 10px;">⚠️ PO shows "Nia Financial Group LLC" — must be corrected to "The Education Company" before payment</div>
+    </div>
+
+    <!-- Forest Hill -->
+    <div class="client-card" style="border-left:3px solid #2E7D32;">
+      <div class="client-card-header">
+        <div><div class="client-name">Forest Hill Elementary</div><div class="client-meta">Nijah Ford · Mobile, AL</div></div>
+        <span class="client-badge badge-urgent">Aug 6–7</span>
+      </div>
+      <div class="client-details">
+        <div class="client-detail-item"><div class="detail-label">Training Dates</div><div class="detail-value">Aug 6–7 + Aug 24</div></div>
+        <div class="client-detail-item"><div class="detail-label">PO Status</div><div class="detail-value" style="color:#EF9A9A;">Awaiting signature</div></div>
+        <div class="client-detail-item"><div class="detail-label">Parent Evening</div><div class="detail-value">August 24</div></div>
+        <div class="client-detail-item"><div class="detail-label">Days Out</div><div class="detail-value" id="days-foresthill">--</div></div>
+      </div>
+      <div style="font-size:10px;color:#EF9A9A;background:rgba(211,47,47,0.08);border-radius:6px;padding:6px 10px;">⚠️ Thomas signature still needed on PO — do not let this slip</div>
+    </div>
+
+    <!-- Pioneer -->
+    <div class="client-card" style="border-left:3px solid #F9A825;">
+      <div class="client-card-header">
+        <div><div class="client-name">Pioneer Career & Tech Center</div><div class="client-meta">Jolene Young · Shelby, OH · PO #3624405</div></div>
+        <span class="client-badge badge-confirmed">Oct 9</span>
+      </div>
+      <div class="client-details">
+        <div class="client-detail-item"><div class="detail-label">Contract</div><div class="detail-value">$4,500</div></div>
+        <div class="client-detail-item"><div class="detail-label">PO Status</div><div class="detail-value" style="color:#A5D6A7;">Signed ✓</div></div>
+        <div class="client-detail-item"><div class="detail-label">Training Date</div><div class="detail-value">October 9, 2026</div></div>
+        <div class="client-detail-item"><div class="detail-label">Days Out</div><div class="detail-value" id="days-pioneer">--</div></div>
+      </div>
+    </div>
+
+    <!-- Client daily tasks -->
+    <div style="margin-top:8px;">
+      <div class="time-block">
+        <div class="time-block-header"><div class="time-chip client-time">Daily · As Needed</div><div class="time-block-title">Client Actions</div><div class="time-est">varies</div></div>
+        <div class="task-list" id="tl-client-daily" data-section="client" data-block="daily"></div>
+        <button class="add-task-btn" onclick="openModal('client','daily')">+ Add Task</button>
+      </div>
+      <div class="time-block">
+        <div class="time-block-header"><div class="time-chip client-time">Pre-Trip Prep</div><div class="time-block-title">Delivery Readiness</div><div class="time-est">1 week out</div></div>
+        <div class="task-list" id="tl-client-prep" data-section="client" data-block="prep"></div>
+        <button class="add-task-btn" onclick="openModal('client','prep')">+ Add Task</button>
+      </div>
+    </div>
+  </div>
+
   <div class="stack-footer">
     <div class="footer-motto">"Solving School Challenges One Intervention At A Time"</div>
     <div class="footer-brand">THE <span>EDUCATION</span> COMPANY</div>
   </div>
-
 </div>
 
 <script>
-  // ── DATE ──
-  const d = new Date();
-  const opts = { weekday: 'short', month: 'short', day: 'numeric' };
-  document.getElementById('todayDate').textContent = d.toLocaleDateString('en-US', opts);
+// ══ DEFAULT TASKS ══
+const DT={
+  'li-am':[
+    {id:'li-am-1',label:"Pull today's queue from Gmail",detail:'Search: from:drglanton@gmail.com subject:"EDCO LinkedIn Daily Send Queue" newer_than:1d · Parse all blocks · Discard SAMPLE rows',tag:'tag-daily',mins:'3 min',am:false,pm:false},
+    {id:'li-am-2',label:'Execute AM Session — 10 sends',detail:'MSG1 → Connect + Add Note · MSG2 → Message + Paste + Send · MSG3 → Audit Offer · Log each "sent"',tag:'tag-daily',mins:'20 min',am:true,pm:false},
+    {id:'li-am-3',label:'Check overnight connection accepts',detail:'Review notifications · Flag MSG1 accepts → queue for MSG2 in 3 days · Reply to direct messages immediately',tag:'tag-daily',mins:'5 min',am:false,pm:false},
+    {id:'li-am-4',label:"Publish today's LinkedIn post",detail:'Mon/Wed = Pattern Interrupt · Tue = Proof · Thu = Promise · Fri = Plan · One post, no exceptions',tag:'tag-daily',mins:'5 min',am:false,pm:false},
+  ],
+  'li-pm':[
+    {id:'li-pm-1',label:'Execute PM Session — 10 sends',detail:'Next 10 from queue · Same workflow by stage · Never exceed 20 total sends in one calendar day',tag:'tag-daily',mins:'20 min',am:false,pm:true},
+  ],
+  'li-eod':[
+    {id:'li-eod-1',label:'Log sends to Google Sheet',detail:'MSG1 → Col S · MSG2 → Col T · MSG3 → Col U · Format MM/DD/YYYY · Use download_file_content CSV — never read_file_content',tag:'tag-daily',mins:'5 min',am:false,pm:false},
+    {id:'li-eod-2',label:'Engage 5 comments on your post',detail:'Reply to every comment within the day · Like + comment on 5 posts from principals · Algorithm rewards early engagement',tag:'tag-daily',mins:'5 min',am:false,pm:false},
+    {id:'li-eod-3',label:'Hand off setter — any MSG3 audit replies',detail:'Any principal who replied to MSG3 → notify Cecilia immediately · Setter calls same business day · Do NOT let replies sit overnight',tag:'tag-critical',mins:'2 min',am:false,pm:false},
+  ],
+  'c360-daily':[
+    {id:'c360-d-1',label:"Confirm today's post published correctly",detail:'Check Content360 dashboard · Verify LinkedIn and Facebook fired · Fix immediately if a post failed',tag:'tag-daily',mins:'3 min',am:false,pm:false},
+    {id:'c360-d-2',label:'Approve blog draft from email queue',detail:'n8n sends blog draft ready email → review title, content, image prompt → approve or reject · Title must match Google Sheet exactly',tag:'tag-daily',mins:'5 min',am:false,pm:false},
+    {id:'c360-d-3',label:'Check DM chatbot replies',detail:'Review Messenger chatbot activity · Any principal who triggered DISCIPLINE keyword → hand to Cecilia immediately',tag:'tag-daily',mins:'5 min',am:false,pm:false},
+    {id:'c360-d-4',label:'Capture 1 content idea from your day',detail:'Client call insight · Principal conversation · School observation · Voice memo — gold is in those conversations',tag:'tag-daily',mins:'2 min',am:false,pm:false},
+  ],
+  'c360-weekly':[
+    {id:'c360-w-1',label:'Write 5 posts for the week',detail:'Mon/Wed = Pattern Interrupt · Tue = Proof · Thu = Promise · Fri = Plan · Voice guide language — never generic PD speak',tag:'tag-mwf',mins:'45 min',am:false,pm:false},
+    {id:'c360-w-2',label:'Upload + schedule all 5 in Content360',detail:'Load into queue · Schedule Mon–Fri at 7–8 AM or 11 AM–12 PM · Verify captions, images, platform targets · Check for duplicate time conflicts',tag:'tag-mwf',mins:'20 min',am:false,pm:false},
+    {id:'c360-w-3',label:'Review prior week analytics',detail:'Which post got most reach? Most comments? Double down on that format. Kill what did not move.',tag:'tag-mwf',mins:'10 min',am:false,pm:false},
+    {id:'c360-w-4',label:'Verify DISCIPLINE keyword SMS automation',detail:'Confirm Content360 keyword trigger active → any comment/DM with "DISCIPLINE" fires GHL lead magnet sequence automatically',tag:'tag-auto',mins:'5 min',am:false,pm:false},
+    {id:'c360-w-5',label:'Check n8n AutoLogger wrote correct dates',detail:'Verify M1/M2/M3 dates landed in correct sheet columns after this week · Sheet ID: 13oX54Hro0I_BY1-RYpPdL6TOOLtEE2qZHj2Pg2T7744',tag:'tag-mwf',mins:'3 min',am:false,pm:false},
+  ],
+  'ghl-am':[
+    {id:'ghl-am-1',label:'Check pipeline — any new leads overnight?',detail:'Open GHL pipeline · New opt-ins from audit or drift magnets → tag and route to Cecilia · Any inbound calls to 800-294-9009 → setter notified same hour',tag:'tag-critical',mins:'5 min',am:false,pm:false},
+    {id:'ghl-am-2',label:'Verify workflow automations firing',detail:'Check active sequences: Webinar Invitation, No Show Follow-Up, Re-Engage 1 · Fix any stuck contacts before they age out',tag:'tag-daily',mins:'5 min',am:false,pm:false},
+    {id:'ghl-am-3',label:"Review Nutshell — Cecilia's open tasks",detail:'Confirm setter has no leads sitting 24+ hrs without contact · Every new lead gets same-day outreach — non-negotiable · She is commission-only and motivated but needs oversight',tag:'tag-critical',mins:'3 min',am:false,pm:false},
+  ],
+  'ghl-mid':[
+    {id:'ghl-mid-1',label:'Reply to any booked session pre-call emails',detail:'GHL sends pre-call reminder automatically · Any manual replies from prospects → Thomas responds · Never leave a booked principal without a reply before their session',tag:'tag-high',mins:'5 min',am:false,pm:false},
+    {id:'ghl-mid-2',label:'Move pipeline cards after strategy session',detail:'Session held → move to Proposal Sent or Closed · Log in Nutshell · Proposal out within 48 hours — not 72, not whenever',tag:'tag-high',mins:'3 min',am:false,pm:false},
+  ],
+  'ghl-eod':[
+    {id:'ghl-eod-1',label:'Confirm no leads stuck in Smart Lists',detail:'Check Smart Lists filtering correctly · Contacts in webinar_eligible not enrolled → push into webinar sequence before end of day',tag:'tag-daily',mins:'5 min',am:false,pm:false},
+    {id:'ghl-eod-2',label:'Database Reactivation pulse (until complete)',detail:'Monitor re-engagement campaign stats across 6,300 contacts · Any reply → Cecilia gets it immediately · Track opens, clicks, opt-outs daily',tag:'tag-high',mins:'5 min',am:false,pm:false},
+    {id:'ghl-eod-3',label:'Friday: Verify SPF / DKIM / DMARC',detail:'GHL deliverability check · Domain health = email reputation · One failed setting kills your entire 6,300-contact send capacity · Non-negotiable every Friday',tag:'tag-mwf',mins:'5 min',am:false,pm:false},
+    {id:'ghl-eod-4',label:"Tomorrow's LinkedIn queue — confirm loaded",detail:"Verify next day's queue email will send · Confirm Fiverr batch active for next state · If prospect supply is running low — reorder immediately, not tomorrow",tag:'tag-daily',mins:'2 min',am:false,pm:false},
+  ],
+  'assoc-daily':[
+    {id:'assoc-d-1',label:'Send 2 association outreach emails today',detail:'Use Hormozi-style subject lines · Lead with free 60-min session offer · Target PD Directors AND Executive Directors · States with summer conferences = highest priority now',tag:'tag-daily',mins:'10 min',am:false,pm:false},
+    {id:'assoc-d-2',label:'Follow up on any open association replies',detail:'Any reply from an ED or PD Director → respond within 2 hours · Never let an association lead sit overnight · Route interested contacts to Cecilia at $125/showed call',tag:'tag-critical',mins:'5 min',am:false,pm:false},
+    {id:'assoc-d-3',label:'Check Cecilia — any association discovery calls scheduled',detail:'Cecilia earns $125 per showed association call · Confirm she is actively working the association list · Review any scheduled calls for prep',tag:'tag-high',mins:'5 min',am:false,pm:false},
+  ],
+  'assoc-weekly':[
+    {id:'assoc-w-1',label:'Friday: Update association pipeline status',detail:'Update the 54-state GHL CSV with outreach status, replies, scheduled calls, confirmed presentations · Track by conference date not by state alphabetically',tag:'tag-mwf',mins:'10 min',am:false,pm:false},
+    {id:'assoc-w-2',label:'Identify next 3 states to target',detail:'Lead with states whose conferences are within 90 days · Build outreach email for each ED and PD Director · Do not mass-blast — personalize per state',tag:'tag-mwf',mins:'5 min',am:false,pm:false},
+  ],
+  'client-daily':[
+    {id:'client-d-1',label:'East Knox: Resolve PO entity name error',detail:'PO incorrectly shows "Nia Financial Group LLC" · Must be corrected to "The Education Company" · Contact Shannon Sprang ssprang@ekschools.org · No payment until this is fixed',tag:'tag-critical',mins:'10 min',am:false,pm:false},
+    {id:'client-d-2',label:'Forest Hill: Sign PO immediately',detail:'Thomas signature still needed on Forest Hill PO · Training is Aug 6–7 — 63 days out · Do not let this slip another day',tag:'tag-critical',mins:'5 min',am:false,pm:false},
+    {id:'client-d-3',label:'Follow up on any open client communications',detail:'Check email for messages from Shannon Sprang, Nijah Ford, Jolene Young · Respond within same business day · Never let a confirmed client wait 24+ hours',tag:'tag-high',mins:'5 min',am:false,pm:false},
+  ],
+  'client-prep':[
+    {id:'client-p-1',label:'Forest Hill prep — 1 week out (July 30)',detail:'Pull school intake data · Review Forest Hill demographics and current discipline picture · Print call guide · Confirm arrival logistics and hotel · Verify Nijah Ford contact is current',tag:'tag-high',mins:'30 min',am:false,pm:false},
+    {id:'client-p-2',label:'East Knox prep — 1 week out (Aug 4)',detail:'Pull East Knox intake · Review Shannon Sprang pre-session notes · Confirm $7,500 first payment received before travel · Print materials · Confirm hotel Shelby OH area',tag:'tag-high',mins:'30 min',am:false,pm:false},
+    {id:'client-p-3',label:'Pioneer prep — 1 week out (Oct 2)',detail:'Pull Pioneer intake · Confirm Jolene Young logistics · Verify PO #3624405 payment timeline · Print materials · Confirm Shelby OH hotel',tag:'tag-high',mins:'20 min',am:false,pm:false},
+    {id:'client-p-4',label:'Post-session: Proposal out within 48 hours',detail:'Any strategy session held → proposal drafted and sent within 48 hours · Tag pipeline card in GHL · Log outcome in Nutshell · Follow Tier anchor: lead with Tier 2 ($18K–$30K)',tag:'tag-critical',mins:'45 min',am:false,pm:false},
+  ],
+};
 
-  // ── STORAGE KEY (date-scoped so it auto-resets each day) ──
-  const TODAY = d.toISOString().slice(0,10);
-  const STORE_KEY = 'edco-stack-' + TODAY;
+// ══ STORAGE ══
+const TODAY=new Date().toISOString().slice(0,10);
+const TASKS_KEY='edco-tasks-v3';
+const STATE_KEY='edco-state-'+TODAY;
+let TASKS=JSON.parse(localStorage.getItem(TASKS_KEY)||'null')||JSON.parse(JSON.stringify(DT));
+let STATE=JSON.parse(localStorage.getItem(STATE_KEY)||'{}');
+function saveTasks(){localStorage.setItem(TASKS_KEY,JSON.stringify(TASKS));}
+function saveState(){localStorage.setItem(STATE_KEY,JSON.stringify(STATE));}
 
-  // ── STATE ──
-  const sections = { li: { done: 0, total: 0 }, c360: { done: 0, total: 0 }, ghl: { done: 0, total: 0 } };
+const TL={'tag-critical':'Critical','tag-high':'High','tag-daily':'Daily','tag-mwf':'Weekly','tag-auto':'Auto','tag-preretire':'Pre-Retire'};
+const SB={'li':'li-border','c360':'c360-border','ghl':'ghl-border','assoc':'assoc-border','client':'client-border'};
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 
-  // ── INIT ──
-  function init() {
-    // Count totals
-    document.querySelectorAll('.task-card[data-id]').forEach(card => {
-      const sec = getSec(card.dataset.id);
-      if (sec) sections[sec].total++;
-    });
+// ══ BUILD CARD ══
+function buildCard(task,sec,block){
+  const key=sec+'-'+block,done=!!STATE[task.id];
+  const card=document.createElement('div');
+  card.className='task-card '+(SB[sec]||'')+(done?' done':'');
+  card.dataset.id=task.id;card.dataset.key=key;card.draggable=true;
+  card.innerHTML=
+    '<span class="drag-handle" title="Hold to reorder">⠿</span>'+
+    '<div class="task-checkbox" onclick="toggleTask(\''+task.id+'\')"><span class="check-icon">&#10003;</span></div>'+
+    '<div class="task-body">'+
+      '<div class="task-label">'+esc(task.label)+'</div>'+
+      '<div class="task-detail">'+esc(task.detail||'')+'</div>'+
+      '<div class="card-actions">'+
+        '<button class="card-btn edit-btn" onclick="startEdit(\''+task.id+'\')">&#9998; Edit</button>'+
+        '<button class="card-btn del-btn" onclick="deleteTask(\''+task.id+'\',\''+key+'\')">&#128465; Delete</button>'+
+      '</div>'+
+    '</div>'+
+    '<div class="task-right">'+
+      '<span class="task-tag '+(task.tag||'tag-daily')+'">'+(TL[task.tag]||'Daily')+'</span>'+
+      '<span class="task-mins">'+esc(task.mins||'')+'</span>'+
+    '</div>';
 
-    // Restore saved state
-    const saved = JSON.parse(localStorage.getItem(STORE_KEY) || '{}');
-    Object.keys(saved).forEach(id => {
-      if (saved[id]) {
-        const card = document.querySelector(`[data-id="${id}"]`);
-        if (card) card.classList.add('done');
-      }
-    });
+  let pt;
+  card.addEventListener('touchstart',function(){pt=setTimeout(function(){card.classList.toggle('show-actions');},500);},{passive:true});
+  card.addEventListener('touchend',function(){clearTimeout(pt);},{passive:true});
+  card.addEventListener('dragstart',function(e){dragId=task.id;dragKey=key;e.currentTarget.style.opacity='0.4';e.dataTransfer.effectAllowed='move';});
+  card.addEventListener('dragover',function(e){e.preventDefault();e.currentTarget.classList.add('drag-over');});
+  card.addEventListener('dragleave',function(e){e.currentTarget.classList.remove('drag-over');});
+  card.addEventListener('drop',function(e){e.preventDefault();e.currentTarget.classList.remove('drag-over');if(dragId!==task.id&&dragKey===key)reorder(key,dragId,task.id);});
+  card.addEventListener('dragend',function(e){e.currentTarget.style.opacity='';});
+  return card;
+}
 
-    updateAll();
-  }
-
-  function getSec(id) {
-    if (!id) return null;
-    if (id.startsWith('li')) return 'li';
-    if (id.startsWith('c360')) return 'c360';
-    if (id.startsWith('ghl')) return 'ghl';
-    return null;
-  }
-
-  // ── TOGGLE ──
-  function toggle(card, sec) {
-    card.classList.toggle('done');
-    saveState();
-    updateAll();
-    updateSendsMeter();
-  }
-
-  function saveState() {
-    const state = {};
-    document.querySelectorAll('.task-card[data-id]').forEach(c => {
-      state[c.dataset.id] = c.classList.contains('done');
-    });
-    localStorage.setItem(STORE_KEY, JSON.stringify(state));
-  }
-
-  // ── UPDATE ALL ──
-  function updateAll() {
-    let totalDone = 0, totalTasks = 0;
-    ['li','c360','ghl'].forEach(key => {
-      const cards = document.querySelectorAll(`#sec-${key} .task-card[data-id]`);
-      const done = document.querySelectorAll(`#sec-${key} .task-card.done[data-id]`).length;
-      sections[key].total = cards.length;
-      sections[key].done = done;
-      totalDone += done;
-      totalTasks += cards.length;
-
-      const tabBadge = document.getElementById(`tab-${key}`);
-      const progEl = document.getElementById(`${key}-progress`);
-      if (tabBadge) tabBadge.textContent = `${done}/${cards.length}`;
-      if (progEl) progEl.textContent = `${done}/${cards.length}`;
-    });
-
-    document.getElementById('totalDone').textContent = totalDone;
-    document.getElementById('totalTasks').textContent = totalTasks;
-  }
-
-  // ── SENDS METER (AM + PM session cards) ──
-  function updateSendsMeter() {
-    const amDone = document.querySelector('.am-session-card')?.classList.contains('done');
-    const pmDone = document.querySelector('.pm-session-card')?.classList.contains('done');
-    const sends = (amDone ? 10 : 0) + (pmDone ? 10 : 0);
-    document.getElementById('li-sends-count').textContent = sends + ' / 20';
-    document.getElementById('sends-fill').style.width = (sends / 20 * 100) + '%';
-  }
-
-  // ── TAB SWITCH ──
-  function switchTab(key) {
-    document.querySelectorAll('.stack-section').forEach(s => s.classList.remove('active'));
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    document.getElementById('sec-' + key).classList.add('active');
-    document.querySelector(`.tab[data-tab="${key}"]`).classList.add('active');
-  }
-
-  // ── RESET ──
-  function resetAll() {
-    if (!confirm('Reset all tasks for a new day?')) return;
-    document.querySelectorAll('.task-card.done').forEach(c => c.classList.remove('done'));
-    localStorage.removeItem(STORE_KEY);
-    updateAll();
-    updateSendsMeter();
-  }
-
-  // ── PWA SERVICE WORKER ──
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./sw.js').catch(() => {});
-  }
-
-  // ── PWA INSTALL PROMPT (Android/Chrome) ──
-  let deferredPrompt;
-  window.addEventListener('beforeinstallprompt', e => {
-    e.preventDefault();
-    deferredPrompt = e;
-    document.getElementById('installBanner').classList.add('show');
+// ══ RENDER ══
+function renderAll(){
+  document.querySelectorAll('.task-list[id]').forEach(function(list){
+    var sec=list.dataset.section,block=list.dataset.block,key=sec+'-'+block;
+    list.innerHTML='';
+    (TASKS[key]||[]).forEach(function(t){list.appendChild(buildCard(t,sec,block));});
   });
-  document.getElementById('installBtn')?.addEventListener('click', () => {
-    if (deferredPrompt) {
-      deferredPrompt.prompt();
-      deferredPrompt.userChoice.then(() => {
-        document.getElementById('installBanner').classList.remove('show');
-        deferredPrompt = null;
-      });
-    }
-  });
+  updateCounts();updateSends();
+}
 
-  // ── BOOT ──
-  init();
-  updateSendsMeter();
+function updateCounts(){
+  var s={li:{d:0,t:0},c360:{d:0,t:0},ghl:{d:0,t:0},assoc:{d:0,t:0},client:{d:0,t:0}};
+  var td=0,tt=0;
+  document.querySelectorAll('.task-card[data-id]').forEach(function(c){
+    var sec=c.dataset.key&&c.dataset.key.split('-')[0];
+    if(!sec||!s[sec])return;
+    s[sec].t++;tt++;
+    if(c.classList.contains('done')){s[sec].d++;td++;}
+  });
+  ['li','c360','ghl','assoc','client'].forEach(function(k){
+    var tb=document.getElementById('tab-'+k),pr=document.getElementById(k+'-progress');
+    if(tb)tb.textContent=s[k].d+'/'+s[k].t;
+    if(pr)pr.textContent=s[k].d+'/'+s[k].t;
+  });
+  document.getElementById('totalDone').textContent=td;
+  document.getElementById('totalTasks').textContent=tt;
+}
+
+function updateSends(){
+  var sends=0;
+  Object.values(TASKS).flat().forEach(function(t){if((t.am||t.pm)&&STATE[t.id])sends+=10;});
+  sends=Math.min(sends,20);
+  document.getElementById('li-sends-count').textContent=sends+' / 20';
+  document.getElementById('sends-fill').style.width=(sends/20*100)+'%';
+  document.getElementById('stat-sends').textContent=sends;
+}
+
+// ══ TOGGLE ══
+function toggleTask(id){
+  STATE[id]=!STATE[id];saveState();
+  var c=document.querySelector('[data-id="'+id+'"]');
+  if(c)c.classList.toggle('done',!!STATE[id]);
+  updateCounts();updateSends();
+}
+
+// ══ EDIT ══
+function startEdit(id){
+  var card=document.querySelector('[data-id="'+id+'"]');if(!card)return;
+  var task=Object.values(TASKS).flat().find(function(t){return t.id===id;});if(!task)return;
+  var body=card.querySelector('.task-body');
+  body.innerHTML=
+    '<input class="task-label-input" id="el-'+id+'" value="'+esc(task.label)+'" type="text">'+
+    '<textarea class="task-detail-input" id="ed-'+id+'">'+esc(task.detail||'')+'</textarea>'+
+    '<div class="tag-picker">'+
+      ['tag-critical','tag-high','tag-daily','tag-preretire','tag-mwf','tag-auto'].map(function(t){
+        return '<span class="task-tag tag-opt '+t+(task.tag===t?' selected':'')+'" data-tag="'+t+'" onclick="pickTag(this)">'+TL[t]+'</span>';
+      }).join('')+
+    '</div>'+
+    '<input class="task-label-input" style="margin-top:6px;font-size:10px;" id="em-'+id+'" value="'+esc(task.mins||'')+'" placeholder="e.g. 5 min">'+
+    '<div class="card-actions" style="max-height:40px;margin-top:8px;">'+
+      '<button class="card-btn" style="color:#A5D6A7;border-color:rgba(67,160,71,0.3);" onclick="saveEdit(\''+id+'\')">&#10003; Save</button>'+
+      '<button class="card-btn" onclick="renderAll()">&#10005; Cancel</button>'+
+    '</div>';
+}
+
+function pickTag(el){
+  el.closest('.tag-picker').querySelectorAll('.tag-opt').forEach(function(o){o.classList.remove('selected');});
+  el.classList.add('selected');
+}
+
+function saveEdit(id){
+  var label=(document.getElementById('el-'+id)||{}).value.trim();
+  var detail=(document.getElementById('ed-'+id)||{}).value.trim();
+  var mins=(document.getElementById('em-'+id)||{}).value.trim();
+  var tagEl=document.querySelector('[data-id="'+id+'"] .tag-opt.selected');
+  var tag=tagEl?tagEl.dataset.tag:'tag-daily';
+  if(!label)return;
+  Object.keys(TASKS).forEach(function(k){
+    TASKS[k]=TASKS[k].map(function(t){return t.id===id?Object.assign({},t,{label,detail,tag,mins}):t;});
+  });
+  saveTasks();renderAll();toast('Task updated ✓');
+}
+
+function deleteTask(id,key){
+  if(!confirm('Delete this task?'))return;
+  if(TASKS[key])TASKS[key]=TASKS[key].filter(function(t){return t.id!==id;});
+  saveTasks();delete STATE[id];saveState();renderAll();toast('Task deleted');
+}
+
+// ══ MODAL ══
+var _target=null;
+function openModal(sec,block){_target=sec+'-'+block;['newLabel','newDetail','newMins'].forEach(function(i){document.getElementById(i).value='';});document.getElementById('addModal').classList.add('show');setTimeout(function(){document.getElementById('newLabel').focus();},300);}
+function closeModal(){document.getElementById('addModal').classList.remove('show');}
+function confirmAdd(){
+  var label=document.getElementById('newLabel').value.trim();if(!label)return;
+  var task={id:'c'+Date.now(),label,detail:document.getElementById('newDetail').value.trim(),tag:document.getElementById('newTag').value,mins:document.getElementById('newMins').value.trim(),am:false,pm:false};
+  if(!TASKS[_target])TASKS[_target]=[];
+  TASKS[_target].push(task);saveTasks();closeModal();renderAll();toast('Task added ✓');
+}
+
+// ══ DRAG ══
+var dragId=null,dragKey=null;
+function reorder(key,fromId,toId){
+  var arr=TASKS[key];if(!arr)return;
+  var fi=arr.findIndex(function(t){return t.id===fromId;});
+  var ti=arr.findIndex(function(t){return t.id===toId;});
+  if(fi<0||ti<0)return;
+  arr.splice(ti,0,arr.splice(fi,1)[0]);
+  saveTasks();renderAll();
+}
+
+// ══ TAB ══
+function switchTab(k){
+  document.querySelectorAll('.stack-section').forEach(function(s){s.classList.remove('active');});
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active');});
+  document.getElementById('sec-'+k).classList.add('active');
+  document.querySelector('.tab[data-tab="'+k+'"]').classList.add('active');
+}
+
+// ══ RESET ══
+function resetDay(){
+  if(!confirm('Reset all checkboxes for today?'))return;
+  STATE={};saveState();
+  document.querySelectorAll('.task-card.done').forEach(function(c){c.classList.remove('done');});
+  updateCounts();updateSends();toast('Day reset ✓');
+}
+
+// ══ EXPORT ══
+function exportBackup(){
+  var a=document.createElement('a');
+  a.href='data:application/json;charset=utf-8,'+encodeURIComponent(JSON.stringify({exported:new Date().toISOString(),tasks:TASKS},null,2));
+  a.download='edco-stack-backup-'+TODAY+'.json';a.click();toast('Backup saved 💾');
+}
+
+// ══ TOAST ══
+var toastTimer;
+function toast(msg){var el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(function(){el.classList.remove('show');},2200);}
+
+// ══ COUNTDOWN ══
+function updateCountdown(){
+  var retire=new Date('2026-06-30');
+  var now=new Date();
+  var diff=Math.ceil((retire-now)/(1000*60*60*24));
+  document.getElementById('daysLeft').textContent=diff>0?diff:'LIVE';
+}
+
+// ══ CLIENT DAYS OUT ══
+function updateClientDays(){
+  var dates={eastknox:'2026-08-11',foresthill:'2026-08-06',pioneer:'2026-10-09'};
+  var now=new Date();
+  Object.keys(dates).forEach(function(k){
+    var el=document.getElementById('days-'+k);
+    if(!el)return;
+    var diff=Math.ceil((new Date(dates[k])-now)/(1000*60*60*24));
+    el.textContent=diff+' days';
+    el.style.color=diff<30?'#EF9A9A':diff<60?'#F9A825':'#A5D6A7';
+  });
+}
+
+// ══ INIT ══
+document.getElementById('todayDate').textContent=new Date().toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
+document.getElementById('addModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+if('serviceWorker' in navigator)navigator.serviceWorker.register('./sw.js').catch(function(){});
+updateCountdown();
+updateClientDays();
+renderAll();
 </script>
 </body>
 </html>
