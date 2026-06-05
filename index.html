@@ -39,15 +39,16 @@ body{background:var(--surface);font-family:'DM Sans',sans-serif;color:var(--text
 .icon-btn.gold{color:var(--gold);border-color:rgba(249,168,37,0.3);background:rgba(249,168,37,0.08);}
 
 /* RETIREMENT COUNTDOWN */
-.countdown-bar{background:linear-gradient(90deg,rgba(211,47,47,0.15),rgba(249,168,37,0.1));border-bottom:1px solid rgba(211,47,47,0.3);padding:7px 16px;display:flex;align-items:center;justify-content:space-between;}
-.countdown-label{font-size:10px;font-weight:700;color:#EF9A9A;text-transform:uppercase;letter-spacing:1.5px;}
-.countdown-num{font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--gold);letter-spacing:2px;}
-.countdown-sub{font-size:9px;color:var(--text-muted);}
+.countdown-bar{background:linear-gradient(90deg,rgba(211,47,47,0.15),rgba(249,168,37,0.1));border-bottom:1px solid rgba(211,47,47,0.3);padding:7px 16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:nowrap;min-height:35px;}
+.countdown-label{font-size:10px;font-weight:700;color:#EF9A9A;text-transform:uppercase;letter-spacing:1.5px;white-space:nowrap;}
+.countdown-num{font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--gold);letter-spacing:2px;white-space:nowrap;}
+.countdown-sub{font-size:9px;color:var(--text-muted);white-space:nowrap;}
 
 /* TABS */
-.section-tabs{display:flex;background:var(--surface-2);border-bottom:1px solid var(--border);position:sticky;top:53px;z-index:190;overflow-x:auto;scrollbar-width:none;}
-.section-tabs::-webkit-scrollbar{display:none;}
-.tab{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 10px;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s;color:var(--text-muted);min-width:60px;}
+.section-tabs{display:flex;background:var(--surface-2);border-bottom:1px solid var(--border);position:sticky;top:88px;z-index:190;overflow-x:auto;scrollbar-width:thin;scrollbar-color:rgba(249,168,37,0.3) transparent;-webkit-overflow-scrolling:touch;}
+.section-tabs::-webkit-scrollbar{height:3px;}
+.section-tabs::-webkit-scrollbar-thumb{background:rgba(249,168,37,0.3);border-radius:2px;}
+.tab{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 14px;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s;color:var(--text-muted);min-width:80px;}
 .tab-icon{font-size:15px;}
 .tab-label{font-size:7px;font-weight:700;text-transform:uppercase;letter-spacing:1px;white-space:nowrap;}
 .tab-badge{font-family:'DM Mono',monospace;font-size:9px;background:rgba(255,255,255,0.08);border-radius:100px;padding:1px 5px;}
@@ -216,6 +217,15 @@ body{background:var(--surface);font-family:'DM Sans',sans-serif;color:var(--text
 .modal-btn:active{transform:scale(0.97);}
 ::-webkit-scrollbar{width:4px;}
 ::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px;}
+
+@media(min-width:700px){
+  body{display:flex;flex-direction:column;align-items:center;}
+  .top-banner,.countdown-bar,.section-tabs,.main{width:100%;max-width:720px;}
+  .section-tabs{top:88px;}
+  .tab{min-width:100px;padding:10px 20px;}
+  .tab-label{font-size:10px;}
+  .main{padding:20px 24px 80px;}
+}
 </style>
 </head>
 <body>
