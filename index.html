@@ -37,6 +37,11 @@ body{background:var(--surface);font-family:'DM Sans',sans-serif;color:var(--text
 .icon-btn{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);border-radius:8px;padding:5px 9px;font-size:14px;cursor:pointer;-webkit-appearance:none;}
 .icon-btn:active{transform:scale(0.93);background:rgba(255,255,255,0.14);}
 .icon-btn.gold{color:var(--gold);border-color:rgba(249,168,37,0.3);background:rgba(249,168,37,0.08);}
+.inbox-btn{display:inline-flex;align-items:center;gap:5px;text-decoration:none;background:rgba(249,168,37,0.12);border:1px solid rgba(249,168,37,0.4);color:var(--gold);border-radius:8px;padding:5px 11px;font-size:11px;font-weight:700;letter-spacing:0.5px;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
+.inbox-btn:hover{background:rgba(249,168,37,0.22);border-color:var(--gold);}
+.inbox-btn:active{transform:scale(0.93);}
+.inbox-btn .inbox-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:pulse 1.8s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.85)}}
 
 /* RETIREMENT COUNTDOWN */
 .countdown-bar{background:linear-gradient(90deg,rgba(211,47,47,0.15),rgba(249,168,37,0.1));border-bottom:1px solid rgba(211,47,47,0.3);padding:7px 16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:nowrap;min-height:35px;}
@@ -266,6 +271,10 @@ body{background:var(--surface);font-family:'DM Sans',sans-serif;color:var(--text
   </div>
   <div class="banner-right">
     <div class="progress-pill"><div class="dot"></div><span id="totalDone">0</span>/<span id="totalTasks">0</span></div>
+    <a href="https://drglanton.github.io/edco-command-center/" target="_blank" class="inbox-btn" title="Open Daily Command Center">
+      <span class="inbox-dot"></span>
+      📬 INBOX
+    </a>
     <button class="icon-btn" onclick="exportBackup()" title="Backup">💾</button>
     <button class="icon-btn gold" onclick="resetDay()" title="Reset">↺</button>
   </div>
@@ -432,7 +441,6 @@ body{background:var(--surface);font-family:'DM Sans',sans-serif;color:var(--text
       <button class="add-task-btn" onclick="openModal('assoc','weekly')">+ Add Task</button>
     </div>
 
-    <!-- Conference Pipeline Table -->
     <div style="margin-top:8px;">
       <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text-muted);margin-bottom:8px;">Conference Pipeline</div>
       <table class="assoc-table">
@@ -464,7 +472,6 @@ body{background:var(--surface);font-family:'DM Sans',sans-serif;color:var(--text
       <div><div class="section-progress-num client-accent" id="client-progress">0/0</div><div class="section-progress-label">tasks done</div></div>
     </div>
 
-    <!-- East Knox -->
     <div class="client-card" style="border-left:3px solid #0A66C2;">
       <div class="client-card-header">
         <div><div class="client-name">East Knox Jr./Sr. High</div><div class="client-meta">Shannon Sprang · ssprang@ekschools.org · Shelby OH</div></div>
@@ -479,7 +486,6 @@ body{background:var(--surface);font-family:'DM Sans',sans-serif;color:var(--text
       <div style="font-size:10px;color:#EF9A9A;background:rgba(211,47,47,0.08);border-radius:6px;padding:6px 10px;">⚠️ PO shows "Nia Financial Group LLC" — must be corrected to "The Education Company" before payment</div>
     </div>
 
-    <!-- Forest Hill -->
     <div class="client-card" style="border-left:3px solid #2E7D32;">
       <div class="client-card-header">
         <div><div class="client-name">Forest Hill Elementary</div><div class="client-meta">Nijah Ford · Mobile, AL</div></div>
@@ -494,10 +500,9 @@ body{background:var(--surface);font-family:'DM Sans',sans-serif;color:var(--text
       <div style="font-size:10px;color:#EF9A9A;background:rgba(211,47,47,0.08);border-radius:6px;padding:6px 10px;">⚠️ Thomas signature still needed on PO — do not let this slip</div>
     </div>
 
-    <!-- Pioneer -->
     <div class="client-card" style="border-left:3px solid #F9A825;">
       <div class="client-card-header">
-        <div><div class="client-name">Pioneer Career & Tech Center</div><div class="client-meta">Jolene Young · Shelby, OH · PO #3624405</div></div>
+        <div><div class="client-name">Pioneer Career &amp; Tech Center</div><div class="client-meta">Jolene Young · Shelby, OH · PO #3624405</div></div>
         <span class="client-badge badge-confirmed">Oct 9</span>
       </div>
       <div class="client-details">
@@ -508,7 +513,6 @@ body{background:var(--surface);font-family:'DM Sans',sans-serif;color:var(--text
       </div>
     </div>
 
-    <!-- Client daily tasks -->
     <div style="margin-top:8px;">
       <div class="time-block">
         <div class="time-block-header"><div class="time-chip client-time">Daily · As Needed</div><div class="time-block-title">Client Actions</div><div class="time-est">varies</div></div>
@@ -530,7 +534,6 @@ body{background:var(--surface);font-family:'DM Sans',sans-serif;color:var(--text
 </div>
 
 <script>
-// ══ DEFAULT TASKS ══
 const DT={
   'li-am':[
     {id:'li-am-1',label:"Pull today's queue from Gmail",detail:'Search: from:drglanton@gmail.com subject:"EDCO LinkedIn Daily Send Queue" newer_than:1d · Parse all blocks · Discard SAMPLE rows',tag:'tag-daily',mins:'3 min',am:false,pm:false},
@@ -596,7 +599,6 @@ const DT={
   ],
 };
 
-// ══ STORAGE ══
 const TODAY=new Date().toISOString().slice(0,10);
 const TASKS_KEY='edco-tasks-v3';
 const STATE_KEY='edco-state-'+TODAY;
@@ -609,7 +611,6 @@ const TL={'tag-critical':'Critical','tag-high':'High','tag-daily':'Daily','tag-m
 const SB={'li':'li-border','c360':'c360-border','ghl':'ghl-border','assoc':'assoc-border','client':'client-border'};
 function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 
-// ══ BUILD CARD ══
 function buildCard(task,sec,block){
   const key=sec+'-'+block,done=!!STATE[task.id];
   const card=document.createElement('div');
@@ -630,7 +631,6 @@ function buildCard(task,sec,block){
       '<span class="task-tag '+(task.tag||'tag-daily')+'">'+(TL[task.tag]||'Daily')+'</span>'+
       '<span class="task-mins">'+esc(task.mins||'')+'</span>'+
     '</div>';
-
   let pt;
   card.addEventListener('touchstart',function(){pt=setTimeout(function(){card.classList.toggle('show-actions');},500);},{passive:true});
   card.addEventListener('touchend',function(){clearTimeout(pt);},{passive:true});
@@ -642,7 +642,6 @@ function buildCard(task,sec,block){
   return card;
 }
 
-// ══ RENDER ══
 function renderAll(){
   document.querySelectorAll('.task-list[id]').forEach(function(list){
     var sec=list.dataset.section,block=list.dataset.block,key=sec+'-'+block;
@@ -679,7 +678,6 @@ function updateSends(){
   document.getElementById('stat-sends').textContent=sends;
 }
 
-// ══ TOGGLE ══
 function toggleTask(id){
   STATE[id]=!STATE[id];saveState();
   var c=document.querySelector('[data-id="'+id+'"]');
@@ -687,7 +685,6 @@ function toggleTask(id){
   updateCounts();updateSends();
 }
 
-// ══ EDIT ══
 function startEdit(id){
   var card=document.querySelector('[data-id="'+id+'"]');if(!card)return;
   var task=Object.values(TASKS).flat().find(function(t){return t.id===id;});if(!task)return;
@@ -731,7 +728,6 @@ function deleteTask(id,key){
   saveTasks();delete STATE[id];saveState();renderAll();toast('Task deleted');
 }
 
-// ══ MODAL ══
 var _target=null;
 function openModal(sec,block){_target=sec+'-'+block;['newLabel','newDetail','newMins'].forEach(function(i){document.getElementById(i).value='';});document.getElementById('addModal').classList.add('show');setTimeout(function(){document.getElementById('newLabel').focus();},300);}
 function closeModal(){document.getElementById('addModal').classList.remove('show');}
@@ -742,7 +738,6 @@ function confirmAdd(){
   TASKS[_target].push(task);saveTasks();closeModal();renderAll();toast('Task added ✓');
 }
 
-// ══ DRAG ══
 var dragId=null,dragKey=null;
 function reorder(key,fromId,toId){
   var arr=TASKS[key];if(!arr)return;
@@ -753,7 +748,6 @@ function reorder(key,fromId,toId){
   saveTasks();renderAll();
 }
 
-// ══ TAB ══
 function switchTab(k){
   document.querySelectorAll('.stack-section').forEach(function(s){s.classList.remove('active');});
   document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active');});
@@ -761,7 +755,6 @@ function switchTab(k){
   document.querySelector('.tab[data-tab="'+k+'"]').classList.add('active');
 }
 
-// ══ RESET ══
 function resetDay(){
   if(!confirm('Reset all checkboxes for today?'))return;
   STATE={};saveState();
@@ -769,18 +762,15 @@ function resetDay(){
   updateCounts();updateSends();toast('Day reset ✓');
 }
 
-// ══ EXPORT ══
 function exportBackup(){
   var a=document.createElement('a');
   a.href='data:application/json;charset=utf-8,'+encodeURIComponent(JSON.stringify({exported:new Date().toISOString(),tasks:TASKS},null,2));
   a.download='edco-stack-backup-'+TODAY+'.json';a.click();toast('Backup saved 💾');
 }
 
-// ══ TOAST ══
 var toastTimer;
 function toast(msg){var el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(function(){el.classList.remove('show');},2200);}
 
-// ══ COUNTDOWN ══
 function updateCountdown(){
   var retire=new Date('2026-06-30');
   var now=new Date();
@@ -788,7 +778,6 @@ function updateCountdown(){
   document.getElementById('daysLeft').textContent=diff>0?diff:'LIVE';
 }
 
-// ══ CLIENT DAYS OUT ══
 function updateClientDays(){
   var dates={eastknox:'2026-08-11',foresthill:'2026-08-06',pioneer:'2026-10-09'};
   var now=new Date();
@@ -801,7 +790,6 @@ function updateClientDays(){
   });
 }
 
-// ══ INIT ══
 document.getElementById('todayDate').textContent=new Date().toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
 document.getElementById('addModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
 if('serviceWorker' in navigator)navigator.serviceWorker.register('./sw.js').catch(function(){});
